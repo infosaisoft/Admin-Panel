@@ -18,7 +18,10 @@
 			<put-attribute name="body" value="/WEB-INF/pages/manage-user.jsp" />
 		</definition>
 		
-		
+		<definition name="appointment-setup" extends="baseTemplate">
+			<put-attribute name="title" value="appointment-setup" />
+			<put-attribute name="body" value="/WEB-INF/pages/appointment-setup.jsp" />
+		</definition>
 		
 	</tiles-definitions>
 
