@@ -43,14 +43,20 @@ public class UserServiceImpl implements UserService {
 	public String insertUser(UserDto userdto) {
 		int count = 0;
 		String uid = null;
+		CustomIdGenerator cg=null;
+		String password=null;
 		uid = String.valueOf(CustomIdGenerator.getID());
 		uid = "AID-"+uid;
+		
+		cg=new CustomIdGenerator();
+		password=cg.generateHash(userdto.getPassword());
 		
 		// copy dto to bo
 		
 		UserBo userbo = new UserBo();
 		BeanUtils.copyProperties(userdto, userbo);
 		userbo.setAdmin_id(uid);
+		userbo.setPassword(password);
 		
 		// use DAO
 		
@@ -61,4 +67,21 @@ public class UserServiceImpl implements UserService {
 		return "success";
 	}
 
+	
+	
+	@Override
+	public String removeUser(String admin_id) {
+		int count=0;
+		
+		//use dao
+		count=userdao.deleteUsert(admin_id);
+		
+		if(count==0) {
+			
+			return "not delete";
+		}
+		
+		
+		return "delete";
+	}
 }

@@ -18,7 +18,7 @@
 			<div class="col-12 col-sm-6">
 				<ul class="head_right_section">
 					<li>Welcome! <span id="shopName"></span></li>
-					<li><a id="logoutSession" href="#"><i
+					<li><a id="logoutSession" href="logout"><i
 							class="fa fa-sign-out"></i> Logout</a></li>
 				</ul>
 			</div>

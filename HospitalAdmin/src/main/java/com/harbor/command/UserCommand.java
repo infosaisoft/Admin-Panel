@@ -34,6 +34,8 @@ public class UserCommand {
 	private MultipartFile photo;
 	private Date creation_date;
 	
+	private String admin_id;
+	
 	public String getFname() {
 		return fname;
 	}
@@ -112,6 +114,12 @@ public class UserCommand {
 	}
 	public void setCreation_date(Date creation_date) {
 		this.creation_date = creation_date;
+	}
+	public String getAdmin_id() {
+		return admin_id;
+	}
+	public void setAdmin_id(String admin_id) {
+		this.admin_id = admin_id;
 	}	
 	
 }

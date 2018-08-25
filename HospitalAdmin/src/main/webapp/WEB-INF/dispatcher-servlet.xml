@@ -26,6 +26,8 @@
 	</bean>
 	
 	<mvc:resources mapping="/assets/**" location="/assets/" />
+
+	<mvc:resources location="/assets/images/hospital/" mapping="/assets/images/hospital/**"></mvc:resources>
 	<mvc:resources mapping="/assets/**" location="/assets/images/" />
 	<mvc:annotation-driven>
 	</mvc:annotation-driven>

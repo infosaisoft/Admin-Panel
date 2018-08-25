@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class CustomIdGenerator {
+
 	// 10 Digit Unique ID Creator
 	   private static final long LIMIT = 10000000000L;
 	   private static long last = 0;

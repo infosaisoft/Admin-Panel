@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.harbor.bo.LoginBo;
+import com.harbor.common.CustomIdGenerator;
 import com.harbor.dao.LoginDao;
 import com.harbor.dto.LoginDto;
 
@@ -19,8 +20,13 @@ public class LoginServiceImpl implements LoginService {
 		int count = 0;
 		LoginBo loginbo = null;
 		
+		
 		// copy dto to bo		
+		
+	
+		
 		loginbo = new LoginBo();
+		System.out.println("login service::"+loginbo.getPassword());
 		BeanUtils.copyProperties(logindto, loginbo);
 		
 		// Use DAO

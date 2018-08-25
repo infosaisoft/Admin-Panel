@@ -22,6 +22,9 @@ public class UserDaoImpl implements UserDao {
 	private static final String GETUSERS = "SELECT * FROM hospital_admin WHERE hid=?";
 	private static final String INSERTUSER = "INSERT INTO hospital_admin VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	
+	private static final String CHACKUSER="SELECT COUNT(*) FROM  hospital_admin WHERE username=?";
+	
+	private static final String DELETEUSER="DELETE  FROM `hospital_admin` WHERE `admin_id`=? ";
 	@Autowired
 	JdbcTemplate jt;
 	
@@ -37,7 +40,8 @@ public class UserDaoImpl implements UserDao {
 			UserBo bo=null;
 			while(rs.next()) {
 				
-				bo=new UserBo();	
+				bo=new UserBo();
+				bo.setAdmin_id(rs.getString(1));
 				bo.setFname(rs.getString(3));
 				bo.setLname(rs.getString(4));
 				bo.setUsername(rs.getString(5));
@@ -64,9 +68,22 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int insertUser(UserBo userbo) {
 		int count = 0;
-		
+		int uname=jt.queryForObject(CHACKUSER, Integer.class,userbo.getUsername());
+		System.out.println(uname);
+		if(uname==0) {
 		count = jt.update(INSERTUSER, userbo.getAdmin_id(), userbo.getHid(), userbo.getFname(), userbo.getLname(), userbo.getUsername(), userbo.getPassword(), userbo.getRole(), userbo.getNick_name(), userbo.getGender(), userbo.getAddress(), userbo.getContact(), new Date(), userbo.getPhoto(), new Date());
+		}
+		return count;
+	}
+	
+	
+	
+	@Override
+	public int deleteUsert(String admin_id) {
+		int count=0;
 		
+		count=jt.update(DELETEUSER,admin_id);
+	
 		return count;
 	}
 

@@ -39,14 +39,11 @@ public class LoginController {
 			HttpServletRequest req, HttpServletResponse res) throws Exception {
 		ServletContext sc = null;
 		String result = null;
-		PrintWriter pw = null;
 		LoginDto logindto = null;
-		RequestDispatcher rd = null;
-		RedirectAttributes ra = null;
+		
 
 		// copy command to dto
 		logindto = new LoginDto();
-		pw = res.getWriter();
 		BeanUtils.copyProperties(loginPage, logindto);
 		sc = req.getServletContext();
 

@@ -1,8 +1,9 @@
-package com.harbor.dto;
+package com.harbor.command;
 
-import java.io.Serializable;
+import java.util.Date;
 
-public class Login_historyDto  implements Serializable{
+public class HospitalCommand {
+	
 	private String hid;
 	private String name;
 	private String address;
@@ -12,9 +13,7 @@ public class Login_historyDto  implements Serializable{
 	private String contact;
 	private String reg_number;
 	private String logo;
-	private String creation_date;
-	
-	
+	private Date  creation_date;
 	
 	
 	public String getHid() {
@@ -71,12 +70,11 @@ public class Login_historyDto  implements Serializable{
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
-	public String getCreation_date() {
+	public Date getCreation_date() {
 		return creation_date;
 	}
-	public void setCreation_date(String creation_date) {
+	public void setCreation_date(Date creation_date) {
 		this.creation_date = creation_date;
 	}
-	
 
 }
