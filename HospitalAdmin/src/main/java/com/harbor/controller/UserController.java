@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +48,6 @@ public class UserController {
 
 		sc = req.getServletContext();
 		String uid = (String) sc.getAttribute("uid");
-		System.out.println(uid);
 		if (uid == null) {
 			return "redirect:/login";
 		}
@@ -74,6 +75,17 @@ public class UserController {
 		rolelist.put("admin", "Admin");
 		return rolelist;
 	}
+	
+	/*@ModelAttribute("rolelist1")
+	private Map<String, String> getRoles1(HttpServletRequest req) {
+		Map<String, String> rolelist1 = new HashMap<String, String>();
+		String role=null;
+		String admin_id=req.getParameter("admin_id");
+			UserDto dto=userser.getUserByID(admin_id);	
+			role=dto.getRole();
+			rolelist1.put("role", role);
+		return rolelist1";
+	}*/
 
 	@RequestMapping(value = "/manage-user", method = RequestMethod.POST)
 	public String insertUser(HttpServletRequest req, Map<String, Object> map,
@@ -97,6 +109,9 @@ public class UserController {
 
 		try {
 
+			String fileName3 = null;
+		    fileName3 = req.getSession().getServletContext().getRealPath("/");
+		    System.out.println(""+fileName3);
 			String imgPath = "/assests/images/hospital/";
 			// File file=new
 			// File("D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital\\");
@@ -171,52 +186,48 @@ public class UserController {
 		return "manage-user";
 	}
 
-	@RequestMapping(value = "/userdetalis", method = RequestMethod.GET)
-	public String getUserDetalis(HttpServletRequest req, HttpServletResponse res,Map<String,Object>map,@ModelAttribute("insert_user") UserCommand insert_user) {
-		HttpSession ses=req.getSession(true);
-		int pagesize = 10;
-		int pageno = 5;
-		List<UserDto> listdto = null;
-		int pagecount=4;
-		return "user_report";
-
-	}
 	
-	@RequestMapping(value="/userdetalis", method = RequestMethod.POST)
-	public String userinput(Map<String,Object>map,HttpServletRequest req,HttpServletResponse res) {
-		HttpSession ses = null;
-		int pagesize = 10;
-		int pageno = 5;
-		List<UserDto> listdto = null;
-		int pagecount=2;
+	@RequestMapping(value="edit_admin",method=RequestMethod.GET)
+	public String editUser(Map<String,Object>map,@ModelAttribute("insert_user") UserCommand insert_user,HttpServletRequest req) {
+		String admin_id;
+		UserDto userdto=null;
 		
-		ses=req.getSession(true);
-		System.out.println(req.getParameter("size"));
-		if(req.getParameter("size")==null) {
-			pagesize=(int) ses.getAttribute("psize");
-		}
-		else {
-			pagesize=Integer.parseInt(req.getParameter("size"));
-			ses.setAttribute("psize", pagesize);
-		}
-		
-		
-		if(req.getParameter("pageno")==null) {
-			pageno=1;
-		}
-		else {
-			pageno=Integer.parseInt(req.getParameter("pageno"));
-		}
-	
+		System.out.println("edit controller");
+		admin_id=req.getParameter("admin_id");
 		
 		//use service
-			listdto=userser.getAllUser(pageno, pagesize);
-			pagecount=userser.getpageCount(pagesize);
+		userdto=userser.getUserByID(admin_id);
 		
-			//keep  pagecount and listdto in request scope
-			req.setAttribute("listdto",listdto);
+	  String role=	userdto.getRole();
+	  System.out.println("edit controller"+role);
+		//copy dto to cmd
+		BeanUtils.copyProperties(userdto, insert_user);
+		map.put("userdto", userdto);
+		map.put("insert_user", insert_user);
+		return "edit_user";
+	}
+	
+	
+
+	@RequestMapping(value="edit_admin",method=RequestMethod.POST)
+	public String modiyUser(Map<String,Object>map,@ModelAttribute("insert_user") UserCommand insert_user,HttpServletRequest req) {
+		String admin_id;
+	    String modify=null;
+	    UserDto dto=null;
 	    
-		return "user_report";
+	    //copy cmd to dto
+	    dto=new UserDto();
+	    BeanUtils.copyProperties(insert_user, dto);
+	    
+		
+		System.out.println("edit controllerUpdate");
+		
+		//use service
+   modify=userser.modifyUserDetalis(dto);
+		
+		map.put("modify",modify);
+		map.put("insert_user", insert_user);
+		return "manage-user";
 	}
 
 }

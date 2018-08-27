@@ -79,40 +79,70 @@ public class UserServiceImpl implements UserService {
 
 		return "delete";
 	}
-	
+
 	@Override
 	public int getpageCount(int pagesize) {
-		long recordcount=0;
-		int pagecount=0;
-		recordcount=userdao.totalRecordsCount();
-		pagecount=(int) (recordcount/pagesize);
-		
-		if(recordcount%pagecount!=0) {
+		long recordcount = 0;
+		int pagecount = 0;
+		recordcount = userdao.totalRecordsCount();
+		pagecount = (int) (recordcount / pagesize);
+
+		if (recordcount % pagecount != 0) {
 			pagecount++;
-			
+
 			return pagecount;
 		}
 		return pagecount;
 	}
-	
-	
+
 	@Override
-	public List<UserDto> getAllUser(int pageno,int pagesize) {
-		int startpos=0;
-		List<UserDto>listdto=new ArrayList<>();
-		List<UserBo>listbo=null;
-		
-		//start postion
-		startpos=(pageno*pagesize)-pagesize;
-		listbo=userdao.reportdata(startpos, pagesize);
-		
-		//covert listdomain to listdto
-		
-		listbo.forEach(bo->{
-			UserDto userdto=new UserDto();
+	public List<UserDto> getAllUser(int pageno, int pagesize) {
+		int startpos = 0;
+		List<UserDto> listdto = new ArrayList<>();
+		List<UserBo> listbo = null;
+
+		// start postion
+		startpos = (pageno * pagesize) - pagesize;
+		listbo = userdao.reportdata(startpos, pagesize);
+
+		// covert listdomain to listdto
+
+		listbo.forEach(bo -> {
+			UserDto userdto = new UserDto();
 			BeanUtils.copyProperties(bo, userdto);
 			listdto.add(userdto);
 		});
 		return listdto;
+	}
+
+	@Override
+	public UserDto getUserByID(String admin_id) {
+		UserDto userdto = null;
+		UserBo userbo = null;
+
+		// use dao
+		userbo = userdao.getUserboById(admin_id);
+
+		// copy userbo to user dto
+		userdto = new UserDto();
+		BeanUtils.copyProperties(userbo, userdto);
+		return userdto;
+	}
+
+	@Override
+	public String modifyUserDetalis(UserDto dto) {
+		UserBo bo=null;
+            int count=0;
+		// copy dto to bo
+		bo=new UserBo();
+		BeanUtils.copyProperties(dto, bo);
+		
+		//use dao
+		count=userdao.updateUserBoById(bo);
+		if(count==0) {
+			
+			return "modify not done";
+		}
+		return "modify done";
 	}
 }

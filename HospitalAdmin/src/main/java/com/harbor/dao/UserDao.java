@@ -15,5 +15,10 @@ public interface UserDao {
 	public long totalRecordsCount();
 	
 	public List<UserBo> reportdata(int startpos,int pagesize);
+	
+	
+	public UserBo getUserboById(String admin_id);
+	
+	public int updateUserBoById(UserBo bo);
 
 }

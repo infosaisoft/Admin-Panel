@@ -44,7 +44,7 @@ public class HomeController {
 		String hid = (String) sc.getAttribute("hid");
 		HospitalDto dto = null;
 		List<DepartmentDto> listdto = null;
-		
+		System.out.println("hoem:::"+uid);
 		if(uid==null) {
 			return "redirect:/login";
 		}
@@ -86,7 +86,6 @@ public class HomeController {
 		dto = hservice.featchHospitalInfo(hid);
 		result = dptService.registrationDepartment(dptdto);
 		listdto = dptService.featchAllDepartment();
-		System.out.println(listdto);
 		map.put("uid", uid);
 		map.put("hid", hid);
 		map.put("result", result);
@@ -96,16 +95,32 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value = "/delete_dpt", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete_dpt", method = RequestMethod.GET)
 	public String deleteDepartment(Map<String, Object> map, @ModelAttribute("departmentcmd") Departmentcommand departmentcmd,
 			HttpServletRequest req) {
 		String dpt_id=req.getParameter("dpt_id");
 		String delete=null;
+		DepartmentDto dptdto = null;
+		List<DepartmentDto> listdto = null;
+       System.out.println("delete controller");
+		String uid = (String) sc.getAttribute("uid");
+		String hid = (String) sc.getAttribute("hid");
+
+		// copy cmd to dto
+		HospitalDto dto;
+		dto = new HospitalDto();
+		dptdto = new DepartmentDto();
+		dptdto.setHid(hid);	
+		BeanUtils.copyProperties(departmentcmd, dptdto);
 		//use service
+		dto = hservice.featchHospitalInfo(hid);
 		delete=dptService.removeDept(dpt_id);
-		
+		listdto = dptService.featchAllDepartment();
+	
+		System.out.println("delete");
+		map.put("uid", uid);
 		map.put("delete", delete);
-		return "home";
+		return "redirect:/home";
 	}
 
 }

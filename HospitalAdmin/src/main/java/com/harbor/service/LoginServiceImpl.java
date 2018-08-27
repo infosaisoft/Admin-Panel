@@ -26,7 +26,6 @@ public class LoginServiceImpl implements LoginService {
 	
 		
 		loginbo = new LoginBo();
-		System.out.println("login service::"+loginbo.getPassword());
 		BeanUtils.copyProperties(logindto, loginbo);
 		
 		// Use DAO

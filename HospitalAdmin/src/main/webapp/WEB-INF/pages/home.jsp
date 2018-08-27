@@ -26,19 +26,17 @@ ${result}
 	<c:when test="${!empty listdto }">
 		<table border="1">
 			<tr>
-				<th>DPTID</th>
+				
 				<th>DPTNAME</th>
-				<th>HID</th>
 				<th>DPTLOCATION</th>
 				<th>Action</th>
 			</tr>
 			<c:forEach var="dto" items="${listdto}">
 				<tr>
-					<td>${dto.dpt_id}</td>
 					<td>${dto.dpt_name}</td>
-					<td>${dto.hid}</td>
 					<td>${dto.dpt_location}</td>
 					<td><a class="btn btn-danger btn-sm"
+					onclick="return confirm('Are you sure, you want to delete?');"
 						href="delete_dpt?dpt_id=${dto.dpt_id}">delete</a></td>
 				</tr>
 			</c:forEach>
