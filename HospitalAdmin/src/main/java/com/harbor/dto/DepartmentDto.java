@@ -39,13 +39,4 @@ public class DepartmentDto {
 		this.dpt_id = dpt_id;
 	}
 
-	@Override
-	public String toString() {
-		return "DepartmentDto [dpt_name=" + dpt_name + ", dpt_location=" + dpt_location + ", hid=" + hid + ", dpt_id="
-				+ dpt_id + "]";
-	}
-	
-	
-	
-
 }

@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.harbor.command.Departmentcommand;
 import com.harbor.dto.DepartmentDto;
@@ -23,6 +25,8 @@ import com.harbor.service.DepartmentService;
 import com.harbor.service.HospitalService;
 
 @Controller
+@SessionAttributes({"hid","uid"})
+@Scope("session")
 public class HomeController {
 
 	@Autowired
@@ -53,7 +57,7 @@ public class HomeController {
 		dto = new HospitalDto();
 		// use service
 		dto = hservice.featchHospitalInfo(hid);
-		listdto = dptService.featchAllDepartment();
+		listdto = dptService.featchAllDepartment(hid);
 		map.put("listdto", listdto);
 		map.put("uid", uid);
 		map.put("hid", hid);
@@ -85,7 +89,7 @@ public class HomeController {
 
 		dto = hservice.featchHospitalInfo(hid);
 		result = dptService.registrationDepartment(dptdto);
-		listdto = dptService.featchAllDepartment();
+		listdto = dptService.featchAllDepartment(hid);
 		map.put("uid", uid);
 		map.put("hid", hid);
 		map.put("result", result);
@@ -115,7 +119,7 @@ public class HomeController {
 		//use service
 		dto = hservice.featchHospitalInfo(hid);
 		delete=dptService.removeDept(dpt_id);
-		listdto = dptService.featchAllDepartment();
+	//	listdto = dptService.featchAllDepartment();
 	
 		System.out.println("delete");
 		map.put("uid", uid);

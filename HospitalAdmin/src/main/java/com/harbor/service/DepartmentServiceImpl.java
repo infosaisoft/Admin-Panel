@@ -42,12 +42,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 	
 	
 	@Override
-	public List<DepartmentDto> featchAllDepartment() {
+	public List<DepartmentDto> featchAllDepartment(String hid) {
 		List<DepartmentDto>listdto=new ArrayList<>();
 		List<DepartmentBo>listbo=null;
 		
 		//use dao
-		listbo=dptDao.getAllDepartment();
+		listbo=dptDao.getAllDepartment(hid);
 		
 		listbo.forEach(bo->{
 			

@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +36,8 @@ import com.harbor.dto.UserDto;
 import com.harbor.service.UserService;
 
 @Controller
-@SessionAttributes("hid")
+@SessionAttributes({"hid","uid"})
+@Scope("session")
 public class UserController {
 
 	@Autowired

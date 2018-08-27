@@ -32,10 +32,10 @@
 	<div class="menu_blank_sect"></div>
 	<ul class="left_nav_menu">
 		
-		<li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-		<li class="active_li"><a href="#"><i class="fas fa-users"></i>User Management</a></li>
+		<li><a href="/HospitalAdmin/home"><i class="fas fa-home"></i>Home</a></li>
+		<li class="active_li"><a href="/HospitalAdmin/manage-user"><i class="fas fa-users"></i>User Management</a></li>
 		<li><a href="#"><i class="fas fa-rupee-sign"></i>Tariff/Rate Charts</a></li>
-		<li><a href="#"><i class="far fa-calendar-check"></i>Appointment Setup</a></li>
+		<li><a href="/HospitalAdmin/appointment-setup"><i class="far fa-calendar-check"></i>Appointment Setup</a></li>
 		<li><a href="#"><i class="fas fa-list-ol"></i>Queue Management</a></li>
 		<li><a href="#"><i class="fas fa-th"></i>Content Management</a></li>
 		<li><a href="#"><i class="far fa-address-card"></i>Letter Head Design</a></li>

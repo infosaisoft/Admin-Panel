@@ -18,10 +18,11 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
 	private static final String INSERT_DEPT_QUERY = "INSERT INTO departments (dpt_id,dpt_name,hid,dpt_location) VALUES(?,?,?,?)";
 
-	private static final String GET_DEPARTMENT_QUERY = "SELECT dpt_id,dpt_name,hid,dpt_location FROM departments";
+	//private static final String GET_DEPARTMENT_QUERY = "SELECT dpt_id,dpt_name,hid,dpt_location FROM departments";
 
 	private static final String DEPARTMENT_DELETE_QUERY = "DELETE  FROM departments WHERE dpt_id=? ";
 
+	private static final String GET_DEPARTMENT_QUERY = "SELECT dpt_id,dpt_name,dpt_location FROM departments WHERE hid=?";
 	@Autowired
 	JdbcTemplate jt;
 
@@ -34,7 +35,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 	}
 
 	@Override
-	public List<DepartmentBo> getAllDepartment() {
+	public List<DepartmentBo> getAllDepartment(String hid) {
 		List<DepartmentBo> listbo = null;
 
 		listbo = jt.query(GET_DEPARTMENT_QUERY, new ResultSetExtractor<List<DepartmentBo>>() {
@@ -47,8 +48,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 					bo = new DepartmentBo();
 					bo.setDpt_id(rs.getString(1));
 					bo.setDpt_name(rs.getString(2));
-					bo.setHid(rs.getString(3));
-					bo.setDpt_location(rs.getString(4));
+					bo.setDpt_location(rs.getString(3));
 
 					listbo.add(bo);
 
@@ -56,7 +56,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
 				return listbo;
 			}
 
-		});
+		}, hid);
 		return listbo;
 	}
 
