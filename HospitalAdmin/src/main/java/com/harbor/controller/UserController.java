@@ -5,12 +5,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Time;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.io.FilenameUtils;
@@ -43,14 +47,12 @@ public class UserController {
 	@RequestMapping(value = "/manage-user", method = RequestMethod.GET)
 	public String manageUser(HttpServletRequest req, Map<String, Object> map,
 			@ModelAttribute("insert_user") UserCommand insert_user) {
-		
 
 		sc = req.getServletContext();
-            String uid=(String) sc.getAttribute("uid");
-                System.out.println(uid);
-            if(uid==null) {
-            	return "redirect:/login";
-            }
+		String uid = (String) sc.getAttribute("uid");
+		if (uid == null) {
+			return "redirect:/login";
+		}
 		String hid = (String) sc.getAttribute("hid");
 
 		List<UserDto> userdto = null;
@@ -75,6 +77,17 @@ public class UserController {
 		rolelist.put("admin", "Admin");
 		return rolelist;
 	}
+	
+	/*@ModelAttribute("rolelist1")
+	private Map<String, String> getRoles1(HttpServletRequest req) {
+		Map<String, String> rolelist1 = new HashMap<String, String>();
+		String role=null;
+		String admin_id=req.getParameter("admin_id");
+			UserDto dto=userser.getUserByID(admin_id);	
+			role=dto.getRole();
+			rolelist1.put("role", role);
+		return rolelist1";
+	}*/
 
 	@RequestMapping(value = "/manage-user", method = RequestMethod.POST)
 	public String insertUser(HttpServletRequest req, Map<String, Object> map,
@@ -94,17 +107,22 @@ public class UserController {
 		filename = userPhoto.getOriginalFilename();
 		String fname = String.valueOf(CustomIdGenerator.getID());
 		String ext = FilenameUtils.getExtension(filename);
-		String filename2 = "IMG-" + fname + "."+ext;
+		String filename2 = "IMG-" + fname + "." + ext;
 
 		try {
 
+			String fileName3 = null;
+		    fileName3 = req.getSession().getServletContext().getRealPath("/");
+		    System.out.println(""+fileName3);
 			String imgPath = "/assests/images/hospital/";
-			//File file=new File("D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital\\");
-			File file=new File("D:\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
-			
+			// File file=new
+			// File("D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital\\");
+			File file = new File(
+					"D:\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
+
 			System.out.println(file.getAbsolutePath());
-			os = new FileOutputStream(file+"\\"+filename2);
-			
+			os = new FileOutputStream(file + "\\" + filename2);
+
 			is = userPhoto.getInputStream();
 
 			// perform file copy operation
@@ -167,6 +185,50 @@ public class UserController {
 		map.put("userDto", userdto);
 		System.out.println(delete);
 		map.put("delete", delete);
+		return "manage-user";
+	}
+
+	
+	@RequestMapping(value="edit_admin",method=RequestMethod.GET)
+	public String editUser(Map<String,Object>map,@ModelAttribute("insert_user") UserCommand insert_user,HttpServletRequest req) {
+		String admin_id;
+		UserDto userdto=null;
+		
+		System.out.println("edit controller");
+		admin_id=req.getParameter("admin_id");
+		
+		//use service
+		userdto=userser.getUserByID(admin_id);
+		
+	  String role=	userdto.getRole();
+	  System.out.println("edit controller"+role);
+		//copy dto to cmd
+		BeanUtils.copyProperties(userdto, insert_user);
+		map.put("userdto", userdto);
+		map.put("insert_user", insert_user);
+		return "edit_user";
+	}
+	
+	
+
+	@RequestMapping(value="edit_admin",method=RequestMethod.POST)
+	public String modiyUser(Map<String,Object>map,@ModelAttribute("insert_user") UserCommand insert_user,HttpServletRequest req) {
+		String admin_id;
+	    String modify=null;
+	    UserDto dto=null;
+	    
+	    //copy cmd to dto
+	    dto=new UserDto();
+	    BeanUtils.copyProperties(insert_user, dto);
+	    
+		
+		System.out.println("edit controllerUpdate");
+		
+		//use service
+   modify=userser.modifyUserDetalis(dto);
+		
+		map.put("modify",modify);
+		map.put("insert_user", insert_user);
 		return "manage-user";
 	}
 

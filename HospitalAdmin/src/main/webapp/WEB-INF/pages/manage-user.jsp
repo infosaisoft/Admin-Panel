@@ -67,9 +67,10 @@
 									<td>${user.last_login}</td>
 									<td>${user.admin_id }</td>
 									<td>
-										<button type="button" class="btn btn-primary btn-sm CursorPointer" data-toggle="tooltip" data-placement="top" title="Edit User">
+										<a href="edit_admin?admin_id=${user.admin_id}" type="button" class="btn btn-primary btn-sm CursorPointer"
+										 data-toggle="tooltip" data-placement="top" title="Edit User">
 											<i class="far fa-edit"></i>
-										</button>
+										</a>
 										<a href="delete_admin?admin_id=${user.admin_id}" class="btn btn-danger btn-sm CursorPointer" data-toggle="tooltip" data-placement="top" title="Delete User">
 											<i class="far fa-trash-alt"></i>
 										</a>

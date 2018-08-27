@@ -60,6 +60,19 @@ public class DepartmentServiceImpl implements DepartmentService {
 		});
 		return listdto;
 	}
+	
+	
+	@Override
+	public String removeDept(String dpt_id) {
+	      int count=0;
+	      
+	      //use dao
+	      count=dptDao.deleteDapartment(dpt_id);
+	      if(count==0) {
+	    	  return "fail";
+	      }
+		return "delete";
+	}
 
 }
 
