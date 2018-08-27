@@ -5,7 +5,9 @@ public class ShiftCommand {
 	private String shift_name;
 	private String start_time;
 	private String end_time;
-	
+	private String slot_duration;
+	private String max_patient;
+		
 	public String getShift_name() {
 		return shift_name;
 	}
@@ -24,5 +26,18 @@ public class ShiftCommand {
 	public void setEnd_time(String end_time) {
 		this.end_time = end_time;
 	}
-
+	
+	public String getSlot_duration() {
+		return slot_duration;
+	}
+	public void setSlot_duration(String slot_duration) {
+		this.slot_duration = slot_duration;
+	}
+	public String getMax_patient() {
+		return max_patient;
+	}
+	public void setMax_patient(String max_patient) {
+		this.max_patient = max_patient;
+	}
+	
 }

@@ -32,7 +32,8 @@ import com.harbor.dto.UserDto;
 import com.harbor.service.UserService;
 
 @Controller
-@SessionAttributes("hid")
+@SessionAttributes({"hid","uid"})
+@Scope("session")
 public class UserController {
 
 	@Autowired

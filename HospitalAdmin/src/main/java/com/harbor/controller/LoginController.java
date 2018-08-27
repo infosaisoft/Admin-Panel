@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,6 +25,8 @@ import com.harbor.dto.LoginDto;
 import com.harbor.service.LoginService;
 
 @Controller
+@SessionAttributes({"hid","uid"})
+@Scope("session")
 public class LoginController {
 
 	@Autowired

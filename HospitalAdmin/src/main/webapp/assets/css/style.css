@@ -179,7 +179,8 @@ box-shadow: 0px 15px 10px -10px rgba(0,0,0,0.2);
 
 .sub_head{font-size:16px; text-transform:uppercase;}
 .table-shift th, .table-shift td{padding: 10px;}
-.table-shift th input{padding: 6px; font-size: 14px; background: #fefefe;}
+.table-shift th input[type="text"]{padding:8px; font-size: 14px; background: #fefefe;}
+.table-shift th input[type="time"]{padding:6px; font-size: 14px; background: #fefefe;}
 .FormSetting{display: block; background: #fcfcfc; border: 5px solid #ececec; padding: 10px;}
 .FormSetting>label{font-size:14px;margin-bottom: 3px;}
 .FormSetting .form-group input{padding:6px;font-size: 14px;}
@@ -214,7 +215,7 @@ box-shadow: 0px 15px 10px -10px rgba(0,0,0,0.2);
 }
 
 .dropdown dt a {
-  background-color: #4F6877;
+  background-color: #fff;
   display: block;
   padding: 8px 20px 5px 10px;
   min-height: 25px;
@@ -229,6 +230,7 @@ box-shadow: 0px 15px 10px -10px rgba(0,0,0,0.2);
   cursor: pointer;
   display: inline-block;
   padding: 0 3px 2px 0;
+  color: #646464;
 }
 
 .dropdown dd ul {
