@@ -148,6 +148,7 @@ public class AppointmentController {
 	@ModelAttribute("doclist")
 	private Map<String, String> getRoles() {
 		Map<String, String> rolelist = new HashMap<String, String>();
+		rolelist.put("", "Select Doctor");
 		rolelist.put("doctor", "Doctor");
 		rolelist.put("asst_doc", "Assitant Doctor");
 		rolelist.put("nurse", "Nurse");
@@ -155,6 +156,16 @@ public class AppointmentController {
 		rolelist.put("billing", "Billing");
 		rolelist.put("admin", "Admin");
 		return rolelist;
+	}
+	
+	// get Shidts
+	@ModelAttribute("shiftlist")
+	private Map<String, String> getShiftList() {
+		Map<String, String> shiftlist = new HashMap<String, String>();
+		shiftlist.put("M1", "M1");
+		shiftlist.put("E1", "E1");
+		shiftlist.put("OFF", "OFF");
+		return shiftlist;
 	}
 	
 	

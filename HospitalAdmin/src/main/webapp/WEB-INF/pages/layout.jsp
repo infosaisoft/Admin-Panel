@@ -13,12 +13,17 @@
 <!-- css -->
 <link rel="stylesheet" href="<c:url value="/assets/plugins/bootstrap/css/bootstrap.min.css"/>">
 <link rel="stylesheet" href="<c:url value="/assets/plugins/fontawesome/css/all.css"/>">
+<link rel="stylesheet" href="<c:url value="/assets/plugins/jqueryui/jquery-ui.min.css"/>">
+<link rel="stylesheet" href="<c:url value="/assets/plugins/jquery-multi/jquery.multiselect.css"/>">
 <link rel="stylesheet" href="<c:url value="/assets/css/style.css"/>">
 
 <!-- jQuery-->
 <script src="<c:url value="/assets/js/jquery.min.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/assets/plugins/bootstrap/js/popper.min.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/assets/plugins/bootstrap/js/bootstrap.min.js"/>" type="text/javascript"></script>
+
+<script src="<c:url value="/assets/plugins/jqueryui/jquery-ui.min.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/assets/plugins/jquery-multi/jquery.multiselect.js"/>" type="text/javascript"></script>
 
 </head>
 <body id="id_body">

@@ -187,79 +187,15 @@ box-shadow: 0px 15px 10px -10px rgba(0,0,0,0.2);
 .FormSetting .form-group label{font-size:14px;margin-top: 5px;}
 .btn_box{padding-top: 10px; border-top: 1px solid #ececec;}
 
+.week-head{margin-bottom: 3px; color: #454545; font-weight: 500;}
+.ui-multiselect.ui-widget{width:95px!important;}
+button.ui-multiselect {padding:2px 5px; border-radius: 0; background: #fff;}
+.ui-multiselect span.ui-icon{margin-top:2px;}
+.selectDoc{padding: 2px 5px; height: 28px!important; font-size: 14px;}
+.ui-multiselect-checkboxes label{padding: 2px 3px;}
+.ui-multiselect-checkboxes label input{margin-right: 5px;}
+.ui-multiselect-checkboxes label span{font-size: 14px;}
 
-.dropdown {
-
-}
-
-.dropdown dd,
-.dropdown dt {
-  margin: 0px;
-  padding: 0px;
-}
-
-.dropdown ul {
-  margin: -1px 0 0 0;
-}
-
-.dropdown dd {
-  position: relative;
-}
-
-.dropdown a,
-.dropdown a:visited {
-  color: #fff;
-  text-decoration: none;
-  outline: none;
-  font-size: 12px;
-}
-
-.dropdown dt a {
-  background-color: #fff;
-  display: block;
-  padding: 8px 20px 5px 10px;
-  min-height: 25px;
-  line-height: 24px;
-  overflow: hidden;
-  border: 0;
-  width: 272px;
-}
-
-.dropdown dt a span,
-.multiSel span {
-  cursor: pointer;
-  display: inline-block;
-  padding: 0 3px 2px 0;
-  color: #646464;
-}
-
-.dropdown dd ul {
-  background-color: #4F6877;
-  border: 0;
-  color: #fff;
-  display: none;
-  left: 0px;
-  padding: 2px 15px 2px 5px;
-  position: absolute;
-  top: 2px;
-  width: 280px;
-  list-style: none;
-  height: 100px;
-  overflow: auto;
-}
-
-.dropdown span.value {
-  display: none;
-}
-
-.dropdown dd ul li a {
-  padding: 5px;
-  display: block;
-}
-
-.dropdown dd ul li a:hover {
-  background-color: #fff;
-}
 
 /*===== MEdia Queries =====*/
 
