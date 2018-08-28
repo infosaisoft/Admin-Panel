@@ -2,6 +2,8 @@ package com.harbor.controller;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.harbor.command.Departmentcommand;
 import com.harbor.dto.DepartmentDto;
 import com.harbor.dto.HospitalDto;
+import com.harbor.dto.UserDto;
 import com.harbor.service.DepartmentService;
 import com.harbor.service.HospitalService;
 
@@ -125,6 +128,29 @@ public class HomeController {
 		map.put("uid", uid);
 		map.put("delete", delete);
 		return "redirect:/home";
+	}
+	
+	// get Departments
+	@ModelAttribute("department")
+	public Map<String, Object> getDepartment(HttpServletRequest req) {
+		Map<String, Object> dptlist = new HashMap<String, Object>();
+		List<String> name = new ArrayList<>();
+		List<String> location = new ArrayList<>();
+		sc = req.getServletContext();
+		String hid = null;
+		String dptname = null, dptlocation = null;
+		List<DepartmentDto> listdto = new ArrayList<>();
+		hid = (String) sc.getAttribute("hid");
+		listdto = dptService.featchAllDepartment(hid);
+		for (DepartmentDto dto : listdto) {
+			dptname = dto.getDpt_name();
+			dptlocation = dto.getDpt_location();
+			name.add(dptname);
+			location.add(dptlocation);
+		}
+		dptlist.put("name", name);
+		dptlist.put("location", location);
+		return dptlist;
 	}
 
 }

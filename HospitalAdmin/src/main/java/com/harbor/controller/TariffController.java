@@ -11,22 +11,34 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.harbor.command.TariffCommand;
 import com.harbor.dto.TariffDto;
+import com.harbor.dto.UserDto;
 import com.harbor.service.TariffService;
 
 @Controller
+@SessionAttributes({ "hid", "uid" })
+@Scope("session")
 public class TariffController {
 
+	
 	@Autowired
 	TariffService tarService;
-	String uid = null;
 
+	@Autowired
+	AppointmentController ap;
+	
+	@Autowired
+	HomeController hc;
+	
+	String uid = null;
 
 	ServletContext sc = null;
 
@@ -168,6 +180,18 @@ public class TariffController {
 		
 		return tarifflist;
 
+	}
+	
+	// get doctor list from appointment controller
+	@ModelAttribute("doclist")
+	public Map<String, Object> getAllDoc(HttpServletRequest req) {		
+		return ap.getRoles(req);
+	}
+	
+	// get department list from Home controller
+	@ModelAttribute("dptlist")
+	public Map<String, Object> getAllDpt(HttpServletRequest req) {		
+		return hc.getDepartment(req);
 	}
 	
 }

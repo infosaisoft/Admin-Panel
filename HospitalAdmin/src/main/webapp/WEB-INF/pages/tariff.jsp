@@ -89,13 +89,15 @@ ${ insert }
 											placeholder="Rate" path="rates" required="true"/>
 									</th>
 									<th>
-										<form:select class="form-control" path="doctor_name" required="true">									     
-									      	<form:options items="${tarifflist}"/>
+										<form:select class="form-control" path="doctor_name" required="true">
+											<form:option value="">Select Doctor</form:option>									     
+									      	<form:options items="${doclist.name}"/>
 									    </form:select>
 									</th>
 									<th>
-										<form:select class="form-control" path="department" required="true">									     
-									      	<form:options items="${tarifflist}"/>
+										<form:select class="form-control" path="department" required="true">	
+											<form:option value="">Select Department</form:option>								     
+									      	<form:options items="${dptlist.name}"/>
 									    </form:select>
 									</th>
 									<th>
