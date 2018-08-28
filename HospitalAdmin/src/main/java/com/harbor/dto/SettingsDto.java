@@ -32,10 +32,5 @@ public class SettingsDto {
 	public void setMax_patient(String max_patient) {
 		this.max_patient = max_patient;
 	}
-	@Override
-	public String toString() {
-		return "SettingsDto [settings_id=" + settings_id + ", hid=" + hid + ", slot_duration=" + slot_duration
-				+ ", max_patient=" + max_patient + "]";
-	}
 	
 }
