@@ -13,7 +13,7 @@ import com.harbor.bo.HospitalBo;
 @Repository
 public class HospitalDaoImpl implements HospitalDao {
 	
-	private static final String GETHOSPITALINFO="SELECT hid,name,address,state,pincode,contact,reg_number,logo,creation_date FROM hospitals WHERE HID=?";
+	private static final String GETHOSPITALINFO="SELECT hid,name,address,city,state,pincode,contact,reg_number,logo,creation_date FROM hospitals WHERE HID=?";
 
 
 	@Autowired
@@ -32,15 +32,15 @@ public class HospitalDaoImpl implements HospitalDao {
 			//get all record
 			bo=new HospitalBo();
 			bo.setHid(rs.getString(1));
-			System.out.println(bo.getHid());
 			bo.setName(rs.getString(2));
 			bo.setAddress(rs.getString(3));
-			bo.setState(rs.getString(4));
-			bo.setPincode(rs.getString(5));
-			bo.setContact(rs.getString(6));
-			bo.setReg_number(rs.getString(7));
-			bo.setLogo(rs.getString(8));
-			bo.setCreation_date(rs.getDate(9));
+			bo.setCity(rs.getString(4));
+			bo.setState(rs.getString(5));
+			bo.setPincode(rs.getString(6));
+			bo.setContact(rs.getString(7));
+			bo.setReg_number(rs.getString(8));
+			bo.setLogo(rs.getString(9));
+			bo.setCreation_date(rs.getDate(10));
 			return bo;
 		}
 		

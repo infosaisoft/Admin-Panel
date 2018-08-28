@@ -201,6 +201,19 @@ button.ui-multiselect {padding:2px 5px; border-radius: 0; background: #fff;}
 .form-mand label{font-weight:500; white-space:nowrap;}
 .table-tariff .form-control{font-size:14px; padding:5px;height: 32px!important;}
 
+.hosp-logo{display:block; background: #f2f2f2; padding: 10px;}
+.hosp-logo img{width:100%;}
+
+.hos-details h3{text-transform:uppercase; font-size:30px; color: #515151;  margin-top: 20px;}
+
+.hos-detail-sub-head{font-size: 16px; color: #474747; text-transform: uppercase; margin-bottom: 10px;}
+.hos-detail-sub-head i{color:#3f51b5; margin-right:10px; width: 20px; text-align: center;}
+
+.hos-inner-details p{font-size: 14px; color: #8b8b8b; margin-bottom: 10px;}
+.hos-detail-box{display:block; margin-top:15px; border-bottom:1px solid #f2f2f2;}
+
+.hos-btn-box button i{color:#fff; margin-right:3px;}
+
 /*===== MEdia Queries =====*/
 
 @media screen and (min-width: 992px) {

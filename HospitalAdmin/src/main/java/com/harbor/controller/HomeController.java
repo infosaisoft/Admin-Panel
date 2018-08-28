@@ -98,7 +98,7 @@ public class HomeController {
 		map.put("result", result);
 		map.put("dto", dto);
 		map.put("listdto", listdto);
-		return "home";
+		return "redirect:/home";
 	}
 	
 	
