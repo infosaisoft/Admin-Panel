@@ -211,7 +211,7 @@ public class AppointmentController {
 
 	// get doctors
 	@ModelAttribute("doclist")
-	private Map<String, Object> getRoles(HttpServletRequest req) {
+	public  Map<String, Object> getRoles(HttpServletRequest req) {
 		Map<String, Object> doclist = new HashMap<String, Object>();
 		List<String> name = new ArrayList<>();
 		sc = req.getServletContext();
@@ -224,7 +224,7 @@ public class AppointmentController {
 		for (UserDto dto : listdto) {
 			fname = dto.getFname();
 			lname = dto.getLname();
-			name1 = fname + "" + lname;
+			name1 = fname + " " + lname;
 			name.add(name1);
 
 		}
