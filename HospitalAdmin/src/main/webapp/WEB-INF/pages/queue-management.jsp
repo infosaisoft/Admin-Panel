@@ -56,15 +56,15 @@
 									<c:when test="${!empty listdto }">
 										<c:forEach var="dto" items="${listdto}">
 											<tr>
-												<td>${dto.shift_name}</td>
-												<td>${dto.start_time}</td>
-												<td>${dto.end_time}</td>
-												<td class="text-center"><a
-													href="delete_shift?sft_id=${dto.shift_id}"
+												<td>${dto.dpt_name}</td>
+												<td>${dto.room_name}</td>
+												<td>${dto.doc_name}</td>
+												<td class="text-center">
+												<a href="delete_queue?queue_id=${dto.queue_id}"
 													onclick="return confirm('Are you sure, you want to delete?');"
 													class="btn btn-danger btn-sm CursorPointer"
 													data-toggle="tooltip" data-placement="top"
-													title="Delete Shift"> <i class="far fa-trash-alt"></i>
+													title="Delete Queue"> <i class="far fa-trash-alt"></i>
 												</a></td>
 											</tr>
 										</c:forEach>

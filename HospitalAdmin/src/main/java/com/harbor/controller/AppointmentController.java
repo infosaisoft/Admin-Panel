@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.harbor.command.ShiftCommand;
+import com.harbor.dto.DepartmentDto;
 import com.harbor.dto.DoctorAvaliblityDto;
 import com.harbor.dto.SettingsDto;
 import com.harbor.dto.ShiftDto;
@@ -211,7 +212,8 @@ public class AppointmentController {
 
 	// get doctors
 	@ModelAttribute("doclist")
-	public  Map<String, Object> getRoles(HttpServletRequest req) {
+	public Map<String, Object> getRoles(HttpServletRequest req) {
+
 		Map<String, Object> doclist = new HashMap<String, Object>();
 		List<String> name = new ArrayList<>();
 		sc = req.getServletContext();
@@ -219,7 +221,6 @@ public class AppointmentController {
 		String fname = null, lname = null, name1 = null;
 		List<UserDto> listdto = new ArrayList<>();
 		hid = (String) sc.getAttribute("hid");
-		System.out.println("docLisst::" + hid);
 		listdto = docservice.featchRole(hid);
 		for (UserDto dto : listdto) {
 			fname = dto.getFname();
@@ -251,5 +252,6 @@ public class AppointmentController {
 		shiftlist.put("shift", shift);
 		return shiftlist;
 	}
-
+	
+		
 }

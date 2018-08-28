@@ -3,6 +3,7 @@ package com.harbor.dto;
 public class QueueDto {
 
 	private  String  queue_id;
+	private String    hid;
 	private  String dpt_name;
 	private  String room_name;
 	private  String doc_name;
@@ -13,6 +14,12 @@ public class QueueDto {
 	}
 	public void setQueue_id(String queue_id) {
 		this.queue_id = queue_id;
+	}
+	public String getHid() {
+		return hid;
+	}
+	public void setHid(String hid) {
+		this.hid = hid;
 	}
 	public String getDpt_name() {
 		return dpt_name;

@@ -225,7 +225,7 @@
 									<c:otherwise>
 										<tbody>
 											<tr>
-												<td colspan="4" class="text-center">No Records Found</td>
+												<td colspan="9" class="text-center">No Records Found</td>
 											</tr>
 										</tbody>
 									</c:otherwise>

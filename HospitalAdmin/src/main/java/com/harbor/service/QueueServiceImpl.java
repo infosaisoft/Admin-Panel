@@ -1,5 +1,8 @@
 package com.harbor.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +38,35 @@ public class QueueServiceImpl implements QueueService {
 
 		}
 
+		return "success";
+	}
+
+	@Override
+	public List<QueueDto> featchAllQueue(String hid) {
+		List<QueueBo> listbo = null;
+		List<QueueDto> listdto = new ArrayList<>();
+
+		// use dao
+		listbo = queuedao.getAllQueue(hid);
+		listbo.forEach(bo -> {
+			QueueDto dto = new QueueDto();
+			// copy bo to dto
+			BeanUtils.copyProperties(bo, dto);
+			listdto.add(dto);
+		});
+		return listdto;
+	}
+
+	@Override
+	public String deleteQueue(String queue_id) {
+		int count=0;
+		
+		//use dao
+		count=queuedao.deleteQueue(queue_id);
+		
+		if(count==0) {
+			return "fail";
+		}
 		return "success";
 	}
 

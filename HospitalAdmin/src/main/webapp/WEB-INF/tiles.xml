@@ -26,7 +26,11 @@
 		<definition name="queue-management" extends="baseTemplate">
 			<put-attribute name="title" value="queue-management" />
 			<put-attribute name="body" value="/WEB-INF/pages/queue-management.jsp" />
+			</definition>
+			
+		<definition name="tariff" extends="baseTemplate">
+			<put-attribute name="title" value="tariff" />
+			<put-attribute name="body" value="/WEB-INF/pages/tariff.jsp" />
 		</definition>
-		
 	</tiles-definitions>
 
