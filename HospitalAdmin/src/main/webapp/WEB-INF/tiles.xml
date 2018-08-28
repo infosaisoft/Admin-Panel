@@ -23,5 +23,10 @@
 			<put-attribute name="body" value="/WEB-INF/pages/appointment-setup.jsp" />
 		</definition>
 		
+		<definition name="tariff" extends="baseTemplate">
+			<put-attribute name="title" value="tariff" />
+			<put-attribute name="body" value="/WEB-INF/pages/tariff.jsp" />
+		</definition>
+		
 	</tiles-definitions>
 

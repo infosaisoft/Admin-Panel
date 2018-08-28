@@ -11,4 +11,10 @@ public interface TariffService {
 	public List<TariffDto> featchAll(String hid);
 	
 	public String removeTariff(String tariff_id);
+	
+	public String addTariff(TariffDto tdto);
+	
+	public List<TariffDto> featchAllRates(String hid);
+	
+	public String removeRate(String rate_id);
 }

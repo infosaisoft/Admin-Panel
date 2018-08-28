@@ -18,6 +18,7 @@ public class TariffServiceImpl implements TariffService {
 	@Autowired
 	TariffsDao tardao;
 
+	// insert Tariffs
 	@Override
 	public String regTraiff(TariffDto tariffdto) {
 		TariffBo bo = null;
@@ -40,6 +41,7 @@ public class TariffServiceImpl implements TariffService {
 		return "success";
 	}
 	
+	// Get All Tariffs
 	@Override
 	public List<TariffDto> featchAll(String hid) {
 		List<TariffDto>listdto=new ArrayList<>();
@@ -59,7 +61,7 @@ public class TariffServiceImpl implements TariffService {
 		return listdto;
 	}
 	
-	
+	// delete tariffs
 	@Override
 	public String removeTariff(String tariff_id) {
 		
@@ -68,7 +70,69 @@ public class TariffServiceImpl implements TariffService {
 		//use dao
 		count=tardao.deleteTariff(tariff_id);
 		if(count==0) {
-			return "fail";
+			return "failed";
+		}
+		return "success";
+	}
+	
+	
+	// Add Tariff Rates
+	@Override
+	public String addTariff(TariffDto tdto) {
+		
+		TariffBo bo = null;
+		int count = 0;
+		String rate_id = null;
+		rate_id = String.valueOf(CustomIdGenerator.getID());
+		rate_id = "RID-"+rate_id;
+		tdto.setRate_id(rate_id);
+		
+		// copy DTO to BO
+		bo = new TariffBo();
+		bo.setHid(tdto.getHid());
+		BeanUtils.copyProperties(tdto, bo);
+		
+		// use DAO
+		count = tardao.addTariffService(bo);
+		
+		if(count == 0) {
+			return "failed";
+		}else {
+			return "success";
+		}
+		
+	}
+	
+	
+	// Get All Rates
+	@Override
+	public List<TariffDto> featchAllRates(String hid) {
+		List<TariffDto>ratelistdto=new ArrayList<>();
+		List<TariffBo>ratelistbo=null;
+		
+		//use dao
+		ratelistbo=tardao.getAllRates(hid);
+		
+		ratelistbo.forEach(bo->{
+			
+			TariffDto dto=new TariffDto();
+			BeanUtils.copyProperties(bo, dto);
+			ratelistdto.add(dto);
+			
+		});
+				
+		return ratelistdto;
+	}
+
+	
+	// Delete Rate
+	@Override
+	public String removeRate(String rate_id) {
+		int count=0;		
+		//use dao
+		count=tardao.deleteRate(rate_id);
+		if(count==0) {
+			return "failed";
 		}
 		return "success";
 	}

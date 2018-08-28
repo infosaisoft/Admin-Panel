@@ -11,7 +11,7 @@ public class TariffCommand {
 	private String rates;
 	private String doctor_name;
 	private String department;
-	private String is_mandatory;
+	private Boolean is_mandatory;
 
 	public String getTariff_id() {
 		return tariff_id;
@@ -85,11 +85,11 @@ public class TariffCommand {
 		this.department = department;
 	}
 
-	public String getIs_mandatory() {
+	public Boolean getIs_mandatory() {
 		return is_mandatory;
 	}
 
-	public void setIs_mandatory(String is_mandatory) {
+	public void setIs_mandatory(Boolean is_mandatory) {
 		this.is_mandatory = is_mandatory;
 	}
 

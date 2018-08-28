@@ -196,6 +196,10 @@ button.ui-multiselect {padding:2px 5px; border-radius: 0; background: #fff;}
 .ui-multiselect-checkboxes label input{margin-right: 5px;}
 .ui-multiselect-checkboxes label span{font-size: 14px;}
 
+.form-mand{margin-bottom:5px;}
+.form-mand input{margin-left:0px;}
+.form-mand label{font-weight:500; white-space:nowrap;}
+.table-tariff .form-control{font-size:14px; padding:5px;height: 32px!important;}
 
 /*===== MEdia Queries =====*/
 
