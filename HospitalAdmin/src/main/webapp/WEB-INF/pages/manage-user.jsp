@@ -41,14 +41,14 @@
 						<thead class="thead-light">
 							<tr>
 								<th>Photo</th>
-								<th>First Name</th>
-								<th>Last Name</th>
+								<th>Full Name</th>
 								<th>Nick Name</th>
+								<th>User Roles</th>
 								<th>Gender</th>
 								<th>Address</th>
 								<th>Mobile No.</th>
 								<th>Last Login Time</th>
-								<th>adminid</th>
+								<th>Login History</th>
 								<th>Action</th>
 								
 							</tr>
@@ -58,14 +58,19 @@
 								<tr>
 							
 									<td><img src="assets/images/hospital/${user.photo }" height="50" width="50"></td>
-									<td>${user.fname}</td>
-									<td>${user.lname}</td>
+									<td>${user.fname} ${user.lname}</td>
 									<td>${user.nick_name}</td>
+									<td>${user.role}</td>
 									<td>${user.gender}</td>
 									<td>${user.address}</td>
 									<td>${user.contact}</td>
 									<td>${user.last_login}</td>
-									<td>${user.admin_id }</td>
+									<td>
+										<a href="login-history?admin_id=${user.admin_id}" type="button" 
+										class="btn btn-info btn-sm">
+											View
+										</a>
+									</td>
 									<td>
 										<a href="edit_admin?admin_id=${user.admin_id}" type="button" class="btn btn-primary btn-sm CursorPointer"
 										 data-toggle="tooltip" data-placement="top" title="Edit User">

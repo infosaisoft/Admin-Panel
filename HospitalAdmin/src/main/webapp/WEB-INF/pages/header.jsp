@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
+	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!-- Top Fixed Header -->
 <div class="content_header">
@@ -32,7 +33,9 @@
 	<div class="menu_blank_sect"></div>
 	<ul class="left_nav_menu">
 		
-		<li><a href="home"><i class="fas fa-home"></i>Home</a></li>
+		
+		
+		<li ><a href="home"><i class="fas fa-home"></i>Home</a></li>
 		<li class="active_li"><a href="manage-user"><i class="fas fa-users"></i>User Management</a></li>
 		<li><a href="tariff"><i class="fas fa-rupee-sign"></i>Tariff/Rate Charts</a></li>
 		<li><a href="appointment-setup"><i class="far fa-calendar-check"></i>Appointment Setup</a></li>
