@@ -1,14 +1,10 @@
 package com.harbor.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.harbor.command.ShiftCommand;
-import com.harbor.dto.DepartmentDto;
 import com.harbor.dto.DoctorAvaliblityDto;
 import com.harbor.dto.SettingsDto;
 import com.harbor.dto.ShiftDto;
@@ -50,6 +45,18 @@ public class AppointmentController {
 	DoctorAvalibityService avaliblitservice;
 
 	HttpSession ses =null;
+	
+	//get active url   
+		@ModelAttribute("activeurl")
+		public Map<String, Object> getActiveUrl(HttpServletRequest req) {
+			Map<String, Object> activeurl = new HashMap<String, Object>();
+			
+			String url="appcontroller";
+			
+			activeurl.put("url", url);
+			return activeurl;
+		}
+	
 
 	// Page View
 	@RequestMapping(value = "/appointment-setup", method = RequestMethod.GET)

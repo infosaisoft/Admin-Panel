@@ -1,5 +1,6 @@
 package com.harbor.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,18 @@ public class QueueController {
 	QueueService queueservice;
 
 	HttpSession ses = null;
+	
+	//get active url   
+			@ModelAttribute("activeurl")
+			public Map<String, Object> getActiveUrl(HttpServletRequest req) {
+				Map<String, Object> activeurl = new HashMap<String, Object>();
+				
+				String url="queue";
+				
+				activeurl.put("url", url);
+				return activeurl;
+			}
+		
 
 	@RequestMapping(value = "queue-management", method = RequestMethod.GET)
 	public String showQueue(Map<String, Object> map, @ModelAttribute("queuecmd") QueueCommand queuecmd,

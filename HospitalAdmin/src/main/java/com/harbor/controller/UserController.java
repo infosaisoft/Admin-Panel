@@ -44,6 +44,17 @@ public class UserController {
 	UserService userser;
 	HttpSession ses = null;
 
+	//get active url   
+			@ModelAttribute("activeurl")
+			public Map<String, Object> getActiveUrl(HttpServletRequest req) {
+				Map<String, Object> activeurl = new HashMap<String, Object>();
+				
+				String url="user";
+				
+				activeurl.put("url", url);
+				return activeurl;
+			}
+		
 	@RequestMapping(value = "/manage-user", method = RequestMethod.GET)
 	public String manageUser(HttpServletRequest req, Map<String, Object> map,
 			@ModelAttribute("insert_user") UserCommand insert_user) {

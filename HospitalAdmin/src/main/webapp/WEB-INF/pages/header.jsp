@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <!-- Top Fixed Header -->
@@ -12,7 +14,7 @@
 					<div class="head_left_section" id="menu_tgl_btn">
 						<i class="fa fa-outdent"></i>
 					</div>
-					<span>Admin Panel</span>
+					<span>Admin Panel ${activeurl.url}</span>
 				</div>
 			</div>
 			<div class="col-12 col-sm-6">
@@ -32,11 +34,11 @@
 	<div class="menu_blank_sect"></div>
 	<ul class="left_nav_menu">
 		
-		<li><a href="home"><i class="fas fa-home"></i>Home</a></li>
-		<li class="active_li"><a href="manage-user"><i class="fas fa-users"></i>User Management</a></li>
-		<li><a href="tariff"><i class="fas fa-rupee-sign"></i>Tariff/Rate Charts</a></li>
-		<li><a href="appointment-setup"><i class="far fa-calendar-check"></i>Appointment Setup</a></li>
-		<li><a href="queue-management"><i class="fas fa-list-ol"></i>Queue Management</a></li>
+		<li class='<c:if  test="${activeurl.url=='home'}"> active_li</c:if>'><a href="home"><i class="fas fa-home"></i>Home</a></li>
+		<li class='<c:if  test="${activeurl.url=='user'}">active_li</c:if>'><a href="manage-user"><i class="fas fa-users"></i>User Management</a></li>
+		<li class='<c:if  test="${activeurl.url=='tariff'}">active_li</c:if>'><a href="tariff"><i class="fas fa-rupee-sign"></i>Tariff/Rate Charts</a></li>
+		<li class='<c:if  test="${activeurl.url=='appcontroller'}">active_li</c:if>'><a href="appointment-setup"><i class="far fa-calendar-check"></i>Appointment Setup</a></li>
+		<li class='<c:if  test="${activeurl.url=='queue'}">active_li</c:if>'><a href="queue-management"><i class="fas fa-list-ol"></i>Queue Management</a></li>
 		<li><a href="#"><i class="fas fa-th"></i>Content Management</a></li>
 		<li><a href="#"><i class="far fa-address-card"></i>Letter Head Design</a></li>
 		<li><a href="#"><i class="fas fa-file-medical"></i>MIS Reports</a></li>

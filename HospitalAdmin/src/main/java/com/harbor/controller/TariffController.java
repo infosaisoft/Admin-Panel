@@ -42,6 +42,19 @@ public class TariffController {
 	String uid = null;
 
 	HttpSession ses = null;
+	
+	
+	//get active url   
+			@ModelAttribute("activeurl")
+			public Map<String, Object> getActiveUrl(HttpServletRequest req) {
+				Map<String, Object> activeurl = new HashMap<String, Object>();
+				
+				String url="tariff";
+				
+				activeurl.put("url", url);
+				return activeurl;
+			}
+		
 
 	@RequestMapping(value = "tariff", method = RequestMethod.GET)
 	public String ShowTariff(Map<String, Object> map, @ModelAttribute("trafficCmd") TariffCommand trafficCmd,
