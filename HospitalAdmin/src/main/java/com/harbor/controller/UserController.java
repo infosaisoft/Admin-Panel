@@ -42,18 +42,18 @@ public class UserController {
 
 	@Autowired
 	UserService userser;
-	ServletContext sc = null;
+	HttpSession ses = null;
 
 	@RequestMapping(value = "/manage-user", method = RequestMethod.GET)
 	public String manageUser(HttpServletRequest req, Map<String, Object> map,
 			@ModelAttribute("insert_user") UserCommand insert_user) {
 
-		sc = req.getServletContext();
-		String uid = (String) sc.getAttribute("uid");
+		ses = req.getSession();
+		String uid = (String) ses.getAttribute("uid");
 		if (uid == null) {
 			return "redirect:/login";
 		}
-		String hid = (String) sc.getAttribute("hid");
+		String hid = (String) ses.getAttribute("hid");
 
 		List<UserDto> userdto = null;
 
@@ -94,9 +94,9 @@ public class UserController {
 			@Valid @ModelAttribute("insert_user") UserCommand insert_user, BindingResult errors) {
 
 		UserDto user = new UserDto();
-		sc = req.getServletContext();
-		sc.setAttribute("admin_id", user.getAdmin_id());
-		String hid = (String) sc.getAttribute("hid");
+		ses = req.getSession();
+		ses.setAttribute("admin_id", user.getAdmin_id());
+		String hid = (String) ses.getAttribute("hid");
 		MultipartFile userPhoto = null;
 		InputStream is = null;
 		OutputStream os = null;
@@ -158,7 +158,7 @@ public class UserController {
 		// use Service
 		String userResult = userser.insertUser(user);
 		System.out.println(userResult);
-		String admin_id = (String) sc.getAttribute("admin_id");
+		String admin_id = (String) ses.getAttribute("admin_id");
 		System.out.println(admin_id);
 		map.put("hid", hid);
 		map.put("userResult", userResult);
@@ -174,9 +174,9 @@ public class UserController {
 
 		String admin_id = req.getParameter("admin_id");
 		System.out.println("delete controller" + admin_id);
-		sc = req.getServletContext();
+		ses = req.getSession();
 
-		String hid = (String) sc.getAttribute("hid");
+		String hid = (String) ses.getAttribute("hid");
 		String delete = null;
 		delete = userser.removeUser(admin_id);
 		List<UserDto> userdto = null;

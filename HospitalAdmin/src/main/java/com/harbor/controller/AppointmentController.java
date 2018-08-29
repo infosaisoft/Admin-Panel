@@ -11,6 +11,7 @@ import java.util.Vector;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,18 +49,18 @@ public class AppointmentController {
 	@Autowired
 	DoctorAvalibityService avaliblitservice;
 
-	ServletContext sc = null;
+	HttpSession ses =null;
 
 	// Page View
 	@RequestMapping(value = "/appointment-setup", method = RequestMethod.GET)
 	public String appointmentPage(Map<String, Object> map, @ModelAttribute("shiftadd") ShiftCommand shiftcmd,
 			HttpServletRequest req, HttpServletResponse res) {
 
-		sc = req.getServletContext();
+		ses = req.getSession();
 		List<DoctorAvaliblityDto> listdocdto = null;
 
-		String uid = (String) sc.getAttribute("uid");
-		String hid = (String) sc.getAttribute("hid");
+		String uid = (String) ses.getAttribute("uid");
+		String hid = (String) ses.getAttribute("hid");
 
 		SettingsDto setdto = null;
 		setdto = set_ser.fetchSet(hid);
@@ -90,10 +91,10 @@ public class AppointmentController {
 	public String insertShift(Map<String, Object> map, @ModelAttribute("shiftadd") ShiftCommand shiftcmd,
 			HttpServletRequest req, HttpServletResponse res) {
 
-		ServletContext sc = null;
-		sc = req.getServletContext();
-		String uid = (String) sc.getAttribute("uid");
-		String hid = (String) sc.getAttribute("hid");
+		HttpSession ses = null;
+		ses = req.getSession();
+		String uid = (String) ses.getAttribute("uid");
+		String hid = (String) ses.getAttribute("hid");
 
 		List<ShiftDto> listdto = null;
 		String action = req.getParameter("action");
@@ -178,9 +179,9 @@ public class AppointmentController {
 			@ModelAttribute("shiftadd") ShiftCommand shiftcmd) {
 
 		String shift_id = req.getParameter("sft_id");
-		sc = req.getServletContext();
+		ses = req.getSession();
 
-		String hid = (String) sc.getAttribute("hid");
+		String hid = (String) ses.getAttribute("hid");
 		String delete = null;
 		delete = sht_ser.removeShift(shift_id);
 		List<ShiftDto> shiftdto = null;
@@ -197,9 +198,9 @@ public class AppointmentController {
 			@ModelAttribute("shiftadd") ShiftCommand shiftcmd) {
 
 		String avail_id = req.getParameter("avail_id");
-		sc = req.getServletContext();
+		ses = req.getSession();
 
-		String hid = (String) sc.getAttribute("hid");
+		String hid = (String) ses.getAttribute("hid");
 		String delete = null;
 		delete = avaliblitservice.remooveAvaliblity(avail_id);
 		List<ShiftDto> shiftdto = null;
@@ -216,11 +217,11 @@ public class AppointmentController {
 
 		Map<String, Object> doclist = new HashMap<String, Object>();
 		List<String> name = new ArrayList<>();
-		sc = req.getServletContext();
+		ses = req.getSession();
 		String hid = null;
 		String fname = null, lname = null, name1 = null;
 		List<UserDto> listdto = new ArrayList<>();
-		hid = (String) sc.getAttribute("hid");
+		hid = (String) ses.getAttribute("hid");
 		listdto = docservice.featchRole(hid);
 		for (UserDto dto : listdto) {
 			fname = dto.getFname();
@@ -238,7 +239,7 @@ public class AppointmentController {
 	@ModelAttribute("shiftlist")
 	private Map<String, Object> getShiftList(HttpServletRequest req) {
 		Map<String, Object> shiftlist = new HashMap<String, Object>();
-		String hid = (String) sc.getAttribute("hid");
+		String hid = (String) ses.getAttribute("hid");
 		List<ShiftDto> shiftdto = null;
 		List<String> shift = new ArrayList<>();
 		String shiftname = null;

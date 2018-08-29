@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,16 +41,16 @@ public class TariffController {
 	
 	String uid = null;
 
-	ServletContext sc = null;
+	HttpSession ses = null;
 
 	@RequestMapping(value = "tariff", method = RequestMethod.GET)
 	public String ShowTariff(Map<String, Object> map, @ModelAttribute("trafficCmd") TariffCommand trafficCmd,
 			HttpServletRequest reqbg) {
-		sc = reqbg.getServletContext();
-		uid = (String) sc.getAttribute("uid");
+		ses = reqbg.getSession();
+		uid = (String) ses.getAttribute("uid");
 		List<TariffDto> listdto = null;
 		List<TariffDto> ratelistdto = null;
-		String hid = (String) sc.getAttribute("hid");
+		String hid = (String) ses.getAttribute("hid");
 
 		if (uid == null) {
 			return "redirect:/login";
@@ -70,10 +71,10 @@ public class TariffController {
 			String hid = null;
 			TariffDto tardto = null;
 			String insert = null;
-			sc = req.getServletContext();
+			ses = req.getSession();
 			List<TariffDto> listdto = null;
 	
-			hid = (String) sc.getAttribute("hid");
+			hid = (String) ses.getAttribute("hid");
 			String action = req.getParameter("action");
 			
 			if (action.equals("1")) {
@@ -111,14 +112,14 @@ public class TariffController {
 	@RequestMapping(value = "delete_tariff", method = RequestMethod.GET)
 	public String deleteTariff(Map<String, Object> map, @ModelAttribute("trafficCmd") TariffCommand trafficCmd,
 			HttpServletRequest req) {
-		sc = req.getServletContext();
+		ses = req.getSession();
 		String delete = null;
 		TariffDto tardto = null;
 
-		uid = (String) sc.getAttribute("uid");
+		uid = (String) ses.getAttribute("uid");
 		String tariff_id = req.getParameter("tariff_id");
 		List<TariffDto> listdto = null;
-		String hid = (String) sc.getAttribute("hid");
+		String hid = (String) ses.getAttribute("hid");
 	
 		
 		tardto = new TariffDto();
@@ -138,14 +139,14 @@ public class TariffController {
 	@RequestMapping(value = "delete_rate", method = RequestMethod.GET)
 	public String deleteRate(Map<String, Object> map, @ModelAttribute("trafficCmd") TariffCommand trafficCmd,
 			HttpServletRequest req) {
-		sc = req.getServletContext();
+		ses = req.getSession();
 		String deleteRate = null;
 		TariffDto tardto = null;
 
-		uid = (String) sc.getAttribute("uid");
+		uid = (String) ses.getAttribute("uid");
 		String rate_id = req.getParameter("rate_id");
 		List<TariffDto> listdto = null;
-		String hid = (String) sc.getAttribute("hid");
+		String hid = (String) ses.getAttribute("hid");
 	
 		tardto = new TariffDto();
 		BeanUtils.copyProperties(trafficCmd, tardto);
@@ -164,10 +165,10 @@ public class TariffController {
 	@ModelAttribute("tarifflist")
 	private Map<String, Object> getTariffs(HttpServletRequest req) {
 		String hid = null;
-		sc = req.getServletContext();
+		ses = req.getSession();
 		List<String>getname=new ArrayList<>();
 		List<TariffDto> listdto = new ArrayList<>();
-		hid = (String) sc.getAttribute("hid");
+		hid = (String) ses.getAttribute("hid");
 		
 		Map<String, Object> tarifflist = new HashMap<String, Object>();
 		// use service

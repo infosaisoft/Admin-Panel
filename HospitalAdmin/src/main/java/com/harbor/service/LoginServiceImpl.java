@@ -11,35 +11,48 @@ import com.harbor.dto.LoginDto;
 
 @Service
 public class LoginServiceImpl implements LoginService {
-	
+
 	@Autowired
 	LoginDao logindao;
-	
+
 	public String verifyUser(LoginDto logindto) {
-		
+
 		int count = 0;
 		LoginBo loginbo = null;
-		
-		
-		// copy dto to bo		
-		
-	
-		
+		String lid = null;
+
+		lid = String.valueOf(CustomIdGenerator.getID());
+		lid = "LID-" + lid;
+		// copy dto to bo
+		logindto.setLid(lid);
+
 		loginbo = new LoginBo();
 		BeanUtils.copyProperties(logindto, loginbo);
-		
+
 		// Use DAO
-		
+
 		count = logindao.loginUser(loginbo);
-		String admin_id=loginbo.getAdmin_id();
+		String admin_id = loginbo.getAdmin_id();
 		logindto.setAdmin_id(admin_id);
 		logindto.setHid(loginbo.getHid());
-		if(count == 0) {
+		if (count == 0) {
 			return "failed";
-		}else {
+		} else {
 			return "success";
 		}
-		
+
+	}
+
+	@Override
+	public String modifyLogoutTime(String session_id) {
+		int count = 0;
+
+		// use dao
+		count = logindao.updateLogoutTime(session_id);
+		if (count == 0) {
+			return "update";
+		}
+		return "not update";
 	}
 
 }

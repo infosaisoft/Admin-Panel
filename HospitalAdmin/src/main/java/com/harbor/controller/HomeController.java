@@ -1,15 +1,13 @@
 package com.harbor.controller;
 
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,20 +36,17 @@ public class HomeController {
 	@Autowired
 	DepartmentService dptService;
 	
-	ServletContext sc =null;
-	
-	
-	    
+	HttpSession ses =null;
+	   
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String homePage(Map<String, Object> map, @ModelAttribute("departmentcmd") Departmentcommand departmentcmd,
 			HttpServletRequest req, HttpServletResponse res) {
-		sc = req.getServletContext();
-		String uid = (String) sc.getAttribute("uid");
-		String hid = (String) sc.getAttribute("hid");
+		ses = req.getSession();
+		String uid = (String) ses.getAttribute("uid");
+		String hid = (String) ses.getAttribute("hid");
 		HospitalDto dto = null;
 		List<DepartmentDto> listdto = null;
-		System.out.println("hoem:::"+uid);
 		if(uid==null) {
 			return "redirect:/login";
 		}
@@ -73,13 +68,13 @@ public class HomeController {
 			HttpServletRequest req) {
 
 		DepartmentDto dptdto = null;
-		ServletContext sc = null;
+		HttpSession ses = null;
 		String result = null;
 		List<DepartmentDto> listdto = null;
 		HospitalDto dto = null;
-		sc = req.getServletContext();
-		String uid = (String) sc.getAttribute("uid");
-		String hid = (String) sc.getAttribute("hid");
+		ses = req.getSession();
+		String uid = (String) ses.getAttribute("uid");
+		String hid = (String) ses.getAttribute("hid");
 
 		// copy cmd to dto
 		dptdto = new DepartmentDto();
@@ -109,9 +104,8 @@ public class HomeController {
 		String delete=null;
 		DepartmentDto dptdto = null;
 		List<DepartmentDto> listdto = null;
-       System.out.println("delete controller");
-		String uid = (String) sc.getAttribute("uid");
-		String hid = (String) sc.getAttribute("hid");
+		String uid = (String) ses.getAttribute("uid");
+		String hid = (String) ses.getAttribute("hid");
 
 		// copy cmd to dto
 		HospitalDto dto;
@@ -136,11 +130,11 @@ public class HomeController {
 		Map<String, Object> dptlist = new HashMap<String, Object>();
 		List<String> name = new ArrayList<>();
 		List<String> location = new ArrayList<>();
-		sc = req.getServletContext();
+		ses = req.getSession();
 		String hid = null;
 		String dptname = null, dptlocation = null;
 		List<DepartmentDto> listdto = new ArrayList<>();
-		hid = (String) sc.getAttribute("hid");
+		hid = (String) ses.getAttribute("hid");
 		listdto = dptService.featchAllDepartment(hid);
 		for (DepartmentDto dto : listdto) {
 			dptname = dto.getDpt_name();

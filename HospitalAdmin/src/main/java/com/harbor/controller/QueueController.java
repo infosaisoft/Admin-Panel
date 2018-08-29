@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +33,15 @@ public class QueueController {
 	@Autowired
 	QueueService queueservice;
 
-	ServletContext sc = null;
+	HttpSession ses = null;
 
 	@RequestMapping(value = "queue-management", method = RequestMethod.GET)
 	public String showQueue(Map<String, Object> map, @ModelAttribute("queuecmd") QueueCommand queuecmd,
 			HttpServletRequest req) {
-		sc = req.getServletContext();
+		ses = req.getSession();
 		String hid = null;
 		List<QueueDto> listdto = null;
-		hid = (String) sc.getAttribute("hid");
+		hid = (String) ses.getAttribute("hid");
 
 		listdto = queueservice.featchAllQueue(hid);
 
@@ -53,10 +54,10 @@ public class QueueController {
 	public String processQueue(Map<String, Object> map, @ModelAttribute("queuecmd") QueueCommand queuecmd,
 			HttpServletRequest req) {
 		String insertQueue = null;
-		sc = req.getServletContext();
+		ses = req.getSession();
 		QueueDto queuedto = null;
 		String hid = null;
-		hid = (String) sc.getAttribute("hid");
+		hid = (String) ses.getAttribute("hid");
 		List<QueueDto> listdto = null;
 
 		// copy cmd to dto
@@ -91,11 +92,11 @@ public class QueueController {
 	public String removeQueue(Map<String, Object> map, @ModelAttribute("queuecmd") QueueCommand queuecmd,
 			HttpServletRequest req) {
 		String deleteQueue = null;
-		sc = req.getServletContext();
+		ses = req.getSession();
 		QueueDto queuedto = null;
 		String hid = null;
 		String queue_id=null;
-		hid = (String) sc.getAttribute("hid");
+		hid = (String) ses.getAttribute("hid");
 		List<QueueDto> listdto = null;
 		queue_id=req.getParameter("queue_id");
 		// copy cmd to dto

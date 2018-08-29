@@ -71,7 +71,9 @@
 										 data-toggle="tooltip" data-placement="top" title="Edit User">
 											<i class="far fa-edit"></i>
 										</a>
-										<a href="delete_admin?admin_id=${user.admin_id}" class="btn btn-danger btn-sm CursorPointer" data-toggle="tooltip" data-placement="top" title="Delete User">
+										<a href="delete_admin?admin_id=${user.admin_id}" 
+											onclick="return confirm('Are you sure, you want to delete?');"
+										class="btn btn-danger btn-sm CursorPointer" data-toggle="tooltip" data-placement="top" title="Delete User">
 											<i class="far fa-trash-alt"></i>
 										</a>
 									</td>

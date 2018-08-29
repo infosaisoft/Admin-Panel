@@ -17,7 +17,7 @@
 
 			<div class="row">
 				<div class="col-12">
-					<h3 class="sub_head">Create Shifts</h3>
+					<h3 class="sub_head">Add Queue</h3>
 					<form:form method="POST" modelAttribute="queuecmd">
 						<table class="table table-bordered table-custom table-shift">
 							<thead class="thead-light">
@@ -45,7 +45,7 @@
 
 										</form:select>
 									</th>
-									<th>
+									<th class="text-center">
 										<button type="submit" class="btn btn-primary btn-sm">Add
 											Queue</button>
 									</th>
