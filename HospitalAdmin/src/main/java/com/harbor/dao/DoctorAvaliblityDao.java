@@ -10,6 +10,5 @@ public interface DoctorAvaliblityDao {
 	
 	public List<DoctorAvaliblityBo> getAllAvaliblity(String hid);
 	
-	
 	public int deleteAvaliblity(String avail_id);
 }
