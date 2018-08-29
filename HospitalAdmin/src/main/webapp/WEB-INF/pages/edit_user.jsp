@@ -98,16 +98,25 @@
 					</div>
 					<div class="col">
 						<div class="form-group">
-							<label>Photo</label> <img
-								src="assets/images/hospital/${userdto.photo}" height="100"
-								width="100"> <input type="file" name="photo"
-								class="form-control-file">
+							<label>Photo</label> 
+							<div>
+							<img src="assets/images/hospital/${userdto.photo}" height="100"
+								width="100"> <input class="mt-2" type="file" name="photo" class="form-control-file">
+							</div>
+								
 						</div>
 					</div>
 
 
-					<button type="submit" class="btn btn-primary btn-md">Submit</button>
 				</div>
+				
+				<div class="row">
+					<div class="col">
+						<a href="manage-user" class="btn btn-secondary btn-md">Cancel</a>
+						<button type="submit" class="btn btn-primary btn-md">Save User</button>						
+					</div>
+				</div>
+				
 			</form:form>
 			<p>${modify}</p>
 

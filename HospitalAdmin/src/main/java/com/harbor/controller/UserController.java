@@ -127,7 +127,7 @@ public class UserController {
 			// File file=new
 			// File("D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital\\");
 			File file = new File(
-					"D:\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
+					"D:\\projects\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
 
 			System.out.println(file.getAbsolutePath());
 			os = new FileOutputStream(file + "\\" + filename2);
@@ -209,7 +209,7 @@ public class UserController {
 		map.put("userDto", userdto);
 		System.out.println(delete);
 		map.put("delete", delete);
-		return "manage-user";
+		return "redirect:/manage-user";
 	}
 
 	@RequestMapping(value = "edit_admin", method = RequestMethod.GET)
@@ -257,8 +257,7 @@ public class UserController {
 			// File file=new
 			// File("D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital\\");
 			File file = new File(
-					"D:\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
-
+					"D:\\projects\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
 			System.out.println(file.getAbsolutePath());
 			os = new FileOutputStream(file + "\\" + filename2);
 

@@ -24,7 +24,7 @@
 						<div class="form-group">
 							<label>Name</label>
 							<form:input class="form-control" path="name"
-								placeholder="Enter First Name" />
+								placeholder="Enter Name" />
 							<form:errors path="name" />
 						</div>
 					</div>
@@ -32,7 +32,7 @@
 						<div class="form-group">
 							<label>Address</label>
 							<form:input class="form-control" path="address"
-								placeholder="Enter Last Name" />
+								placeholder="Enter Address" />
 							<form:errors path="address" />
 						</div>
 					</div>
@@ -43,83 +43,72 @@
 						<div class="form-group">
 							<label>City</label>
 							<form:input class="form-control" path="city"
-								placeholder="Enter Username" />
+								placeholder="Enter City" />
 						</div>
 					</div>
-
-				</div>
-
-				<div class="row">
 					<div class="col">
 						<div class="form-group">
 							<label>State</label>
 							<form:input class="form-control" path="state"
-								placeholder="Enter Address" />
-						</div>
-					</div>
-					<div class="col">
-						<div class="form-group">
-							<label>Pincode.</label>
-							<form:input class="form-control" path="pincode"
-								placeholder="Enter Mobile Number" />
+								placeholder="Enter State" />
 						</div>
 					</div>
 				</div>
 
 				<div class="row">
+
 					<div class="col">
-						<div class="form-group GenderBox">
-							<div>
-								<label>contact</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<form:input class="form-check-input" path="contact" />
-							</div>
+						<div class="form-group">
+							<label>Pincode.</label>
+							<form:input class="form-control" path="pincode"
+								placeholder="Enter Pin Code" />
 						</div>
 					</div>
-
+					<div class="col">
+						<div class="form-group">
+							<label>contact</label>
+							<form:input class="form-control" path="contact"
+							placeholder="Enter Contact No." />
+						</div>
+					</div>
+				</div>
 
 					<div class="row">
 						<div class="col">
-							<div class="form-group GenderBox">
-								<div>
-									<label>reg_number</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<form:input class="form-check-input" path="reg_number" />
-								</div>
+							<div class="form-group">
+								<label>Registration No.</label>
+								<form:input class="form-control" path="reg_number"
+								placeholder="Enter Contact No." />
 							</div>
 						</div>
-
-
 
 						<div class="col">
 							<div class="form-group">
-								<label>logo</label> <img
-									src="assets/images/hospital/${userdto.photo}" height="100"
-									width="100"> <input type="file" name="logo_photo" value="logo_photo"
-									class="form-control-file">
+								<label>Logo</label>
+								<div>
+									<img src="assets/images/hospital/${userdto.photo}" height="100"
+										width="100"> <input class="mt-2" type="file"
+										name="logo_photo" value="logo_photo" class="form-control-file">
+								</div>
 
 							</div>
 						</div>
 
-
-						<button type="submit" class="btn btn-primary btn-md">Submit</button>
 					</div>
+					
+					<div class="row">
+						<div class="col">
+							<a href="home" class="btn btn-secondary btn-md">Cancel</a>
+							<button type="submit" class="btn btn-primary btn-md">Save Hospital</button>						
+						</div>
+					</div>
+					
 			</form:form>
 			<p>${modify}</p>
 
 		</div>
 	</div>
 
-	<script>
-		$(function() {
-			$(".multiSelectRole").multiselect({
-				header : false,
-				noneSelectedText : 'Update Roles'
-			});
-		});
-	</script>
 
 	<!-- Footer Start -->
 	<div id="footer-section" class="footer-section">

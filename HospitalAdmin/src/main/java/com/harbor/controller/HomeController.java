@@ -47,6 +47,7 @@ public class HomeController {
 	DepartmentService dptService;
 	
 	HttpSession ses =null;
+
 	
 	
 	//get active url   
@@ -216,8 +217,7 @@ public class HomeController {
 			String imgPath = "/assests/images/hospital/";
 			// File file=new
 			// File("D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital\\");
-			File file = new File(
-					"D:\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
+			File file = new File("D:\\projects\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
 
 			System.out.println(file.getAbsolutePath());
 			os = new FileOutputStream(file + "\\" + filename2);
