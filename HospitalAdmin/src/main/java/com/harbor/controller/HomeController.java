@@ -1,5 +1,10 @@
 package com.harbor.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -17,8 +24,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.harbor.command.Departmentcommand;
+import com.harbor.command.HospitalCommand;
+import com.harbor.common.CustomIdGenerator;
 import com.harbor.dto.DepartmentDto;
 import com.harbor.dto.HospitalDto;
 import com.harbor.dto.UserDto;
@@ -146,5 +156,119 @@ public class HomeController {
 		dptlist.put("location", location);
 		return dptlist;
 	}
+	
+	
+	
+	@RequestMapping(value = "edit-hospital", method = RequestMethod.GET)
+	public String editHome(Map<String, Object> map, @ModelAttribute("HospitalCmd") HospitalCommand HospitalCmd,
+			HttpServletRequest req, HttpServletResponse res) {
+		HospitalDto hdto=null;
+		String hid=null;
+		
+		hid=req.getParameter("hid");
+		
+		//copy dto to cmd
+		hdto=new HospitalDto();
+		hdto=hservice.featchRecordBYId(hid);
+		
+		BeanUtils.copyProperties(hdto, HospitalCmd);
+		map.put("HospitalCmd", HospitalCmd);
+		
+		return "edit-hospital";
+		
+	}
+	
+	
+	
+	@RequestMapping(value = "edit-hospital", method = RequestMethod.POST)
+	public String modifyHospital(Map<String, Object> map, @ModelAttribute("HospitalCmd") HospitalCommand HospitalCmd,
+			HttpServletRequest req, HttpServletResponse res) {
+		HospitalDto hdto=null;
+		String modify=null;
+		
+		MultipartFile logo = null;
+		InputStream is = null;
+		OutputStream os = null;
+		String filename = null;
+
+		// Get Name of file
+		logo =HospitalCmd.getLogo_photo();
+		filename = logo.getOriginalFilename();
+		String fname = String.valueOf(CustomIdGenerator.getID());
+		String ext = FilenameUtils.getExtension(filename);
+		String filename2 = "logo-" + fname + "." + ext;
+
+		try {
+
+			String fileName3 = null;
+			fileName3 = req.getSession().getServletContext().getRealPath("/");
+			String imgPath = "/assests/images/hospital/";
+			// File file=new
+			// File("D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital\\");
+			File file = new File(
+					"D:\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
+
+			System.out.println(file.getAbsolutePath());
+			os = new FileOutputStream(file + "\\" + filename2);
+
+			is = logo.getInputStream();
+
+			// perform file copy operation
+			IOUtils.copy(is, os);
+
+		} 
+		
+		
+		catch (IOException e) {
+			
+			e.printStackTrace();
+		} 
+		
+		catch (Exception e) {
+			
+			e.printStackTrace();
+		} 
+		
+		finally {
+			// close streams
+			try {
+				if (os != null) {
+					os.close();
+				}
+			} catch (IOException e2) {
+				
+				e2.printStackTrace();
+			}
+			
+			try {
+				
+				if (is != null) {
+					is.close();
+				}
+				
+			} 
+			catch (IOException e2) {
+				e2.printStackTrace();
+			}
+			
+		}
+
+		
+		
+		//copy cmd to dto
+		hdto=new HospitalDto();
+		BeanUtils.copyProperties(HospitalCmd, hdto);
+		hdto.setLogo(filename2);
+		//use  servie
+		System.out.println("odify::::::::"+hdto.getAddress());
+		modify=hservice.modifyHospital(hdto);
+
+		
+		map.put("modify",modify);
+		
+		return "redirect:/home";
+		
+	}
+
 
 }

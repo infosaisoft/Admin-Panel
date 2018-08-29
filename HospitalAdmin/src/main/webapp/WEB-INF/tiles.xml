@@ -42,5 +42,11 @@
 			<put-attribute name="title" value="tariff" />
 			<put-attribute name="body" value="/WEB-INF/pages/tariff.jsp" />
 		</definition>
+		
+		
+		<definition name="edit-hospital" extends="baseTemplate">
+			<put-attribute name="title" value="tariff" />
+			<put-attribute name="body" value="/WEB-INF/pages/edit-hospital.jsp" />
+		</definition>
 	</tiles-definitions>
 

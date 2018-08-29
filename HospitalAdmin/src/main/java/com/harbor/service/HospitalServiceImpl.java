@@ -55,4 +55,38 @@ public class HospitalServiceImpl implements HospitalService {
 		return list;
 	}
 
+	
+	
+	@Override
+	public HospitalDto featchRecordBYId(String hid) {
+		HospitalDto hdto=null;
+		HospitalBo hbo=new HospitalBo();
+		
+		//use dao
+		hbo=hdao.gethospital(hid);
+		
+		//copy bo to dto
+		hdto=new HospitalDto();
+		BeanUtils.copyProperties(hbo, hdto);
+	
+		return hdto;
+	}
+	
+	@Override
+	public String modifyHospital(HospitalDto hdto) {
+		HospitalBo bo=null;
+		int count=0;
+		//copy bo to dto
+		bo=new HospitalBo();
+		BeanUtils.copyProperties(bo, hdto);
+		
+		//use dao
+		count=hdao.updateHospital(bo);
+		
+		if(count==0) {
+			return "fail";
+		}
+		
+		return "success";
+	}
 }

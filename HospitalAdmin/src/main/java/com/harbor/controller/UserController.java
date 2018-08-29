@@ -36,7 +36,7 @@ import com.harbor.dto.UserDto;
 import com.harbor.service.UserService;
 
 @Controller
-@SessionAttributes({"hid","uid"})
+@SessionAttributes({ "hid", "uid" })
 @Scope("session")
 public class UserController {
 
@@ -77,17 +77,15 @@ public class UserController {
 		rolelist.put("admin", "Admin");
 		return rolelist;
 	}
-	
-	/*@ModelAttribute("rolelist1")
-	private Map<String, String> getRoles1(HttpServletRequest req) {
-		Map<String, String> rolelist1 = new HashMap<String, String>();
-		String role=null;
-		String admin_id=req.getParameter("admin_id");
-			UserDto dto=userser.getUserByID(admin_id);	
-			role=dto.getRole();
-			rolelist1.put("role", role);
-		return rolelist1";
-	}*/
+
+	/*
+	 * @ModelAttribute("rolelist1") private Map<String, String>
+	 * getRoles1(HttpServletRequest req) { Map<String, String> rolelist1 = new
+	 * HashMap<String, String>(); String role=null; String
+	 * admin_id=req.getParameter("admin_id"); UserDto
+	 * dto=userser.getUserByID(admin_id); role=dto.getRole(); rolelist1.put("role",
+	 * role); return rolelist1"; }
+	 */
 
 	@RequestMapping(value = "/manage-user", method = RequestMethod.POST)
 	public String insertUser(HttpServletRequest req, Map<String, Object> map,
@@ -112,8 +110,8 @@ public class UserController {
 		try {
 
 			String fileName3 = null;
-		    fileName3 = req.getSession().getServletContext().getRealPath("/");
-		    System.out.println(""+fileName3);
+			fileName3 = req.getSession().getServletContext().getRealPath("/");
+			System.out.println("" + fileName3);
 			String imgPath = "/assests/images/hospital/";
 			// File file=new
 			// File("D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital\\");
@@ -128,26 +126,41 @@ public class UserController {
 			// perform file copy operation
 			IOUtils.copy(is, os);
 
-		} catch (IOException e) {
+		} 
+		
+		
+		catch (IOException e) {
+			
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		
+		catch (Exception e) {
+			
 			e.printStackTrace();
-		} finally {
+		} 
+		
+		finally {
 			// close streams
 			try {
 				if (os != null) {
 					os.close();
 				}
 			} catch (IOException e2) {
+				
 				e2.printStackTrace();
 			}
+			
 			try {
+				
 				if (is != null) {
 					is.close();
 				}
-			} catch (IOException e2) {
+				
+			} 
+			catch (IOException e2) {
 				e2.printStackTrace();
 			}
+			
 		}
 		user.setHid(hid);
 		// copy cmd to dto
@@ -188,48 +201,107 @@ public class UserController {
 		return "manage-user";
 	}
 
-	
-	@RequestMapping(value="edit_admin",method=RequestMethod.GET)
-	public String editUser(Map<String,Object>map,@ModelAttribute("insert_user") UserCommand insert_user,HttpServletRequest req) {
+	@RequestMapping(value = "edit_admin", method = RequestMethod.GET)
+	public String editUser(Map<String, Object> map, @ModelAttribute("insert_user") UserCommand insert_user,
+			HttpServletRequest req) {
 		String admin_id;
-		UserDto userdto=null;
-		
+		UserDto userdto = null;
+
 		System.out.println("edit controller");
-		admin_id=req.getParameter("admin_id");
-		
-		//use service
-		userdto=userser.getUserByID(admin_id);
-		
-	  String role=	userdto.getRole();
-	  System.out.println("edit controller"+role);
-		//copy dto to cmd
+		admin_id = req.getParameter("admin_id");
+
+		// use service
+		userdto = userser.getUserByID(admin_id);
+		// copy dto to cmd
 		BeanUtils.copyProperties(userdto, insert_user);
 		map.put("userdto", userdto);
 		map.put("insert_user", insert_user);
 		return "edit_user";
 	}
-	
-	
 
-	@RequestMapping(value="edit_admin",method=RequestMethod.POST)
-	public String modiyUser(Map<String,Object>map,@ModelAttribute("insert_user") UserCommand insert_user,HttpServletRequest req) {
-		String admin_id;
-	    String modify=null;
-	    UserDto dto=null;
-	    
-	    //copy cmd to dto
-	    dto=new UserDto();
-	    BeanUtils.copyProperties(insert_user, dto);
-	    
+	@RequestMapping(value = "edit_admin", method = RequestMethod.POST)
+	public String modiyUser(Map<String, Object> map, @ModelAttribute("insert_user") UserCommand insert_user,
+			HttpServletRequest req) {
+		String modify = null;
+		UserDto dto = null;
 		
-		System.out.println("edit controllerUpdate");
 		
-		//use service
-   modify=userser.modifyUserDetalis(dto);
+		MultipartFile userPhoto = null;
+		InputStream is = null;
+		OutputStream os = null;
+		String filename = null;
+
+		// Get Name of file
+		userPhoto = insert_user.getPhoto();
+		filename = userPhoto.getOriginalFilename();
+		String fname = String.valueOf(CustomIdGenerator.getID());
+		String ext = FilenameUtils.getExtension(filename);
+		String filename2 = "IMG-" + fname + "." + ext;
+
+		try {
+
+			String fileName3 = null;
+			fileName3 = req.getSession().getServletContext().getRealPath("/");
+			System.out.println("" + fileName3);
+			// File file=new
+			// File("D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital\\");
+			File file = new File(
+					"D:\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
+
+			System.out.println(file.getAbsolutePath());
+			os = new FileOutputStream(file + "\\" + filename2);
+
+			is = userPhoto.getInputStream();
+
+			// perform file copy operation
+			IOUtils.copy(is, os);
+
+		} 
 		
-		map.put("modify",modify);
+		
+		catch (IOException e) {
+			
+			e.printStackTrace();
+		} 
+		
+		catch (Exception e) {
+			
+			e.printStackTrace();
+		} 
+		
+		finally {
+			// close streams
+			try {
+				if (os != null) {
+					os.close();
+				}
+			} catch (IOException e2) {
+				
+				e2.printStackTrace();
+			}
+			
+			try {
+				
+				if (is != null) {
+					is.close();
+				}
+				
+			} 
+			catch (IOException e2) {
+				e2.printStackTrace();
+			}
+			
+		}
+
+		// copy cmd to dto
+		dto = new UserDto();
+		BeanUtils.copyProperties(insert_user, dto);
+		dto.setPhoto(filename2);
+		// use service
+		modify = userser.modifyUserDetalis(dto);
+		map.put("modify", modify);
 		map.put("insert_user", insert_user);
-		return "manage-user";
+		return "redirect:/manage-user";
 	}
 
 }

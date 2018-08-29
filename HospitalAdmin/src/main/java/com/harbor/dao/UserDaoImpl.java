@@ -31,11 +31,10 @@ public class UserDaoImpl implements UserDao {
 
 	private static String GETALLUSER = "SELECT * FROM  hospital_admin  limit";
 
-	private static final String GetUserDetalisByID = "SELECT fname,lname,username,password,role,nick_name,gender,contact,photo FROM hospital_admin WHERE admin_id=?";
-	
-	private static final String UDATEUSERDETALIS="UPDATE hospital_admin SET fname=?,lname=?,role=?,nick_name=?,gender=?,contact=?,photo=? WHERE admin_id=?";
-	
-	
+	private static final String GetUserDetalisByID = "SELECT fname,lname,username,password,role,nick_name,gender,address,contact,photo FROM hospital_admin WHERE admin_id=?";
+
+	private static final String UDATEUSERDETALIS = "UPDATE hospital_admin SET fname=?,lname=?,role=?,nick_name=?,gender=?,address=?,contact=?,photo=? WHERE admin_id=?";
+
 	@Autowired
 	JdbcTemplate jt;
 
@@ -162,22 +161,22 @@ public class UserDaoImpl implements UserDao {
 				userbo.setRole(rs.getString(5));
 				userbo.setNick_name(rs.getString(6));
 				userbo.setGender(rs.getString(7));
-				userbo.setContact(rs.getString(8));
-				userbo.setPhoto(rs.getString(9));
+				userbo.setAddress(rs.getString(8));
+				userbo.setContact(rs.getString(9));
+				userbo.setPhoto(rs.getString(10));
 				return userbo;
 			}
 
 		}, admin_id);
 		return userbo;
 	}
-	
-	
-	
+
 	@Override
 	public int updateUserBoById(UserBo bo) {
-		int count=0;
-		
-		count=jt.update(UDATEUSERDETALIS,bo.getAdmin_id(), bo.getFname(),bo.getLname(),bo.getRole(),bo.getNick_name(),bo.getGender(),bo.getContact(),bo.getPhoto());
+		int count = 0;
+
+		count = jt.update(UDATEUSERDETALIS,bo.getFname(), bo.getLname(), bo.getRole(),
+				bo.getNick_name(), bo.getGender(), bo.getAddress(),bo.getContact(), bo.getPhoto(),bo.getAdmin_id());
 		return count;
 	}
 }
