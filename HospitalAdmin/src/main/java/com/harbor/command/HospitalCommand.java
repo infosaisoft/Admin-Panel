@@ -2,6 +2,8 @@ package com.harbor.command;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class HospitalCommand {
 	
 	private String hid;
@@ -14,6 +16,7 @@ public class HospitalCommand {
 	private String reg_number;
 	private String logo;
 	private Date  creation_date;
+	private MultipartFile logo_photo;
 	
 	
 	public String getHid() {
@@ -75,6 +78,12 @@ public class HospitalCommand {
 	}
 	public void setCreation_date(Date creation_date) {
 		this.creation_date = creation_date;
+	}
+	public MultipartFile getLogo_photo() {
+		return logo_photo;
+	}
+	public void setLogo_photo(MultipartFile logo_photo) {
+		this.logo_photo = logo_photo;
 	}
 
 }

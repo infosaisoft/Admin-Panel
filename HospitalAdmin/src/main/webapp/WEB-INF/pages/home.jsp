@@ -63,7 +63,7 @@
 									</div>
 								</div>
 								
-								<div class="mt-3 hos-btn-box"><button class="btn btn-primary btn-sm"><i class="far fa-edit"></i> Edit Profile</button></div>
+								<div class="mt-3 hos-btn-box"><a href="edit-hospital?hid=${dto.hid}"  class="btn btn-primary btn-sm"><i class="far fa-edit"></i> Edit Profile</a></div>
 									
 							</div>
 						</div>
