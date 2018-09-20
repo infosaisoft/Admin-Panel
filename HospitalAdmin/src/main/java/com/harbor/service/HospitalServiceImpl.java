@@ -78,7 +78,7 @@ public class HospitalServiceImpl implements HospitalService {
 		int count=0;
 		//copy bo to dto
 		bo=new HospitalBo();
-		BeanUtils.copyProperties(bo, hdto);
+		BeanUtils.copyProperties(hdto, bo);
 		
 		//use dao
 		count=hdao.updateHospital(bo);
