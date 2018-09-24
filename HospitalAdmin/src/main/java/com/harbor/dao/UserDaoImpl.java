@@ -60,10 +60,10 @@ public class UserDaoImpl implements UserDao {
 					bo.setNick_name(rs.getString(8));
 					bo.setGender(rs.getString(9));
 					bo.setAddress(rs.getString(10));
-					bo.setContact(rs.getString(11));
-					bo.setLast_login(rs.getString(12));
-					bo.setPhoto(rs.getString(13));
-					bo.setCreation_date(rs.getDate(14));
+					bo.setContact(rs.getString(12));
+					bo.setLast_login(rs.getString(13));
+					bo.setPhoto(rs.getString(14));
+					bo.setCreation_date(rs.getDate(15));
 					userbo.add(bo);
 				}
 

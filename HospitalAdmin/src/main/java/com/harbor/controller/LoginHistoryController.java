@@ -35,6 +35,8 @@ public class LoginHistoryController {
 		String uid = (String) ses.getAttribute("uid");
 		String hid = (String) ses.getAttribute("hid");
 		
+		String admin_id = req.getParameter("admin_id");
+		
 		LoginHistoryDto dto = null;
 		List<LoginHistoryDto> listdto = null;
 		
@@ -46,7 +48,7 @@ public class LoginHistoryController {
 		dto = new LoginHistoryDto();
 		
 		// use service
-		listdto = loginser.fetchLoginHistory(uid);
+		listdto = loginser.fetchLoginHistory(admin_id);
 		map.put("listdto", listdto);
 		map.put("uid", uid);
 		map.put("hid", hid);

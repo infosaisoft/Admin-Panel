@@ -188,7 +188,7 @@ public class UserController {
 		map.put("userResult", userResult);
 		map.put("admin_id", admin_id);
 		map.put("hid", hid);
-		return "manage-user";
+		return "redirect:/manage-user";
 
 	}
 
