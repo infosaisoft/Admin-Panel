@@ -56,7 +56,7 @@ public class LoginController {
 
 		ses.setAttribute("uid", logindto.getAdmin_id());
 		ses.setAttribute("hid", logindto.getHid());
-		System.out.println("login Hid::"+logindto.getHid());
+	
 
 		if (result.equalsIgnoreCase("success")) {
 

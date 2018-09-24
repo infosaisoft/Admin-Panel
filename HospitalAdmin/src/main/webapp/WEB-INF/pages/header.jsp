@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
-<<<<<<< HEAD
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-=======
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
->>>>>>> branch 'master' of https://github.com/infosaisoft/Admin-Panel.git
 
 <!-- Top Fixed Header -->
 <div class="content_header">
@@ -19,7 +14,7 @@
 					<div class="head_left_section" id="menu_tgl_btn">
 						<i class="fa fa-outdent"></i>
 					</div>
-					<span>Admin Panel ${activeurl.url}</span>
+					<span>Admin Panel</span>
 				</div>
 			</div>
 			<div class="col-12 col-sm-6">

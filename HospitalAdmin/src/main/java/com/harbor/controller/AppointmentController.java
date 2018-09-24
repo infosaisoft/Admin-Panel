@@ -71,7 +71,6 @@ public class AppointmentController {
 
 		SettingsDto setdto = null;
 		setdto = set_ser.fetchSet(hid);
-		System.out.println("Controller === " + setdto);
 		map.put("setdto", setdto);
 
 		List<ShiftDto> listdto = null;
@@ -105,7 +104,6 @@ public class AppointmentController {
 
 		List<ShiftDto> listdto = null;
 		String action = req.getParameter("action");
-		// System.out.println("action ========= "+action);
 
 		if (action.equals("1")) {
 			ShiftDto shtDto = null;
@@ -123,7 +121,6 @@ public class AppointmentController {
 			map.put("uid", uid);
 			map.put("hid", hid);
 			map.put("result", result);
-			// map.put("listdto", listdto);
 			return "redirect:/appointment-setup";
 
 		}
