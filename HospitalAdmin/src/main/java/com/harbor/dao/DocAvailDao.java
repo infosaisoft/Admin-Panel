@@ -7,5 +7,5 @@ import com.harbor.bo.UserBo;
 
 public interface DocAvailDao {
 
-	public List<UserBo> getAllDoctor(String hid);
+	public List<UserBo> getAllDoctor(long hid);
 }

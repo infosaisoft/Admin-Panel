@@ -8,13 +8,13 @@ import com.harbor.dto.TariffDto;
 public interface TariffService {
 	public String regTraiff(TariffDto tariffdto);
 	
-	public List<TariffDto> featchAll(String hid);
+	public List<TariffDto> featchAll(long hid);
 	
-	public String removeTariff(String tariff_id);
+	public String removeTariff(long tariff_id);
 	
 	public String addTariff(TariffDto tdto);
 	
-	public List<TariffDto> featchAllRates(String hid);
+	public List<TariffDto> featchAllRates(long hid);
 	
-	public String removeRate(String rate_id);
+	public String removeRate(long rate_id);
 }

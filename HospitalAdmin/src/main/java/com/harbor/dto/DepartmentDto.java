@@ -4,8 +4,8 @@ public class DepartmentDto {
 
 	private String dpt_name;
 	private String dpt_location;
-	private String hid;
-	private String dpt_id;
+	private long hid;
+	private long dpt_id;
 
 	public String getDpt_name() {
 		return dpt_name;
@@ -23,20 +23,22 @@ public class DepartmentDto {
 		this.dpt_location = dpt_location;
 	}
 
-	public String getHid() {
+	public long getHid() {
 		return hid;
 	}
 
-	public void setHid(String hid) {
+	public void setHid(long hid) {
 		this.hid = hid;
 	}
 
-	public String getDpt_id() {
+	public long getDpt_id() {
 		return dpt_id;
 	}
 
-	public void setDpt_id(String dpt_id) {
+	public void setDpt_id(long dpt_id) {
 		this.dpt_id = dpt_id;
 	}
 
+
+	
 }

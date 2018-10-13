@@ -2,8 +2,8 @@ package com.harbor.dto;
 
 public class TariffRateChartsDto {
 	
-	private String rate_id;
-	private String hid;
+	private long rate_id;
+	private long hid;
 	private String tariff_name;
 	private String service_name;
 	private String service_category;
@@ -12,16 +12,16 @@ public class TariffRateChartsDto {
 	private String department;
 	private String is_mandatory;
 	
-	public String getRate_id() {
+	public long getRate_id() {
 		return rate_id;
 	}
-	public void setRate_id(String rate_id) {
+	public void setRate_id(long rate_id) {
 		this.rate_id = rate_id;
 	}
-	public String getHid() {
+	public long getHid() {
 		return hid;
 	}
-	public void setHid(String hid) {
+	public void setHid(long hid) {
 		this.hid = hid;
 	}
 	public String getTariff_name() {

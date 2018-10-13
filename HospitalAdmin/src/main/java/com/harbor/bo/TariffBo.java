@@ -2,9 +2,9 @@ package com.harbor.bo;
 
 public class TariffBo {
 	
-	private String tariff_id;
-	private String rate_id;
-	private String hid;
+	private long tariff_id;
+	private long rate_id;
+	private long hid;
 	private String tariff_name;
 	private String service_name;
 	private String service_category;
@@ -12,28 +12,29 @@ public class TariffBo {
 	private String doctor_name;
 	private String department;
 	private Boolean is_mandatory;
+	
 
-	public String getTariff_id() {
+	public long getTariff_id() {
 		return tariff_id;
 	}
 
-	public void setTariff_id(String tariff_id) {
+	public void setTariff_id(long tariff_id) {
 		this.tariff_id = tariff_id;
 	}
 
-	public String getRate_id() {
+	public long getRate_id() {
 		return rate_id;
 	}
 
-	public void setRate_id(String rate_id) {
+	public void setRate_id(long rate_id) {
 		this.rate_id = rate_id;
 	}
 
-	public String getHid() {
+	public long getHid() {
 		return hid;
 	}
 
-	public void setHid(String hid) {
+	public void setHid(long hid) {
 		this.hid = hid;
 	}
 

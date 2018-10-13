@@ -8,14 +8,14 @@ public interface TariffsDao {
 	
 	public int insertTraiffs(TariffBo tfbo);
 	
-	public List<TariffBo> getAllTariff(String hid);	
+	public List<TariffBo> getAllTariff(long hid);	
 	
-	public int deleteTariff(String tariff_id);
+	public int deleteTariff(long tariff_id);
 	
 	public int addTariffService(TariffBo tsbo);
 	
-	public List<TariffBo> getAllRates(String hid);
+	public List<TariffBo> getAllRates(long hid);
 	
-	public int deleteRate(String rate_id);
+	public int deleteRate(long rate_id);
 	
 }

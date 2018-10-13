@@ -2,31 +2,27 @@ package com.harbor.dto;
 
 public class QueueDto {
 
-	private  String  queue_id;
-	private String    hid;
-	private  String dpt_name;
+	private  long  queue_id;
+	private long    hid;
+	
 	private  String room_name;
 	private  String doc_name;
+	private String dpt_name;
 	
 	
-	public String getQueue_id() {
+	public long getQueue_id() {
 		return queue_id;
 	}
-	public void setQueue_id(String queue_id) {
+	public void setQueue_id(long queue_id) {
 		this.queue_id = queue_id;
 	}
-	public String getHid() {
+	public long getHid() {
 		return hid;
 	}
-	public void setHid(String hid) {
+	public void setHid(long hid) {
 		this.hid = hid;
 	}
-	public String getDpt_name() {
-		return dpt_name;
-	}
-	public void setDpt_name(String dpt_name) {
-		this.dpt_name = dpt_name;
-	}
+	
 	public String getRoom_name() {
 		return room_name;
 	}
@@ -39,4 +35,11 @@ public class QueueDto {
 	public void setDoc_name(String doc_name) {
 		this.doc_name = doc_name;
 	}
+	public String getDpt_name() {
+		return dpt_name;
+	}
+	public void setDpt_name(String dpt_name) {
+		this.dpt_name = dpt_name;
+	}
+	
 }

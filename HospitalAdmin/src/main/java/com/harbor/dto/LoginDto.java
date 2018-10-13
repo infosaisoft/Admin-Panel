@@ -7,22 +7,22 @@ public class LoginDto {
 	private String lid;
 	private String username;
 	private String password;
-	private String admin_id;
-	private String hid;
+	private long admin_id;
+	private long  hid;
 	private String session_id;
 	private Date login_time;
 
 
-	public String getHid() {
+	public long getHid() {
 	return hid;
 	}
-	public void setHid(String hid) {
+	public void setHid(long hid) {
 	this.hid = hid;
 	}
-	public String getAdmin_id() {
+	public long getAdmin_id() {
 	return admin_id;
 	}
-	public void setAdmin_id(String admin_id) {
+	public void setAdmin_id(long admin_id) {
 	this.admin_id = admin_id;
 	}
 	public String getUsername() {

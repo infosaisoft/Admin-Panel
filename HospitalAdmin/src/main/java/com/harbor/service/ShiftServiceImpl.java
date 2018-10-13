@@ -1,5 +1,6 @@
 package com.harbor.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.harbor.bo.ShiftBo;
 import com.harbor.common.CustomIdGenerator;
+import com.harbor.common.SpringException;
 import com.harbor.dao.ShiftDao;
 import com.harbor.dto.ShiftDto;
 
@@ -19,20 +21,17 @@ public class ShiftServiceImpl implements ShiftService {
 	ShiftDao shiftdao;
 	
 	@Override
-	public String insertShift(ShiftDto shiftdto) {
+	public String insertShift(ShiftDto shiftdto) throws SpringException,SQLException{
 		
 		ShiftBo shtbo = null;		
-		Long shtid;
+
 		int count = 0;
 		
 		// copy dto to bo
 		shtbo = new ShiftBo();
-		shtid = CustomIdGenerator.getID();
-		String sht_id = String.valueOf(shtid);
-		sht_id = "SHD-"+sht_id;
-		BeanUtils.copyProperties(shiftdto, shtbo);
-		shtbo.setShift_id(sht_id);
 		
+		BeanUtils.copyProperties(shiftdto, shtbo);
+	
 		
 		// Use Dao
 		count = shiftdao.insertShift(shtbo);
@@ -45,7 +44,7 @@ public class ShiftServiceImpl implements ShiftService {
 	}
 
 	@Override
-	public List<ShiftDto> fetchAllShifts(String hid) {
+	public List<ShiftDto> fetchAllShifts(long hid) {
 		
 		List<ShiftDto> shiftdto = new ArrayList<>();
 		List<ShiftBo> shiftbo = null;

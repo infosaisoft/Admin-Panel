@@ -22,14 +22,10 @@ public class DepartmentServiceImpl implements DepartmentService {
 		long dptid;
 		int count=0;
 		//copy dto to bo
-		dptbo=new DepartmentBo();
-		dptid=CustomIdGenerator.getID();
-		String dpt_id=String.valueOf(dptid);
-		dpt_id="DPT-"+dpt_id;
-		
+		dptbo=new DepartmentBo();	
 
 		BeanUtils.copyProperties(deptdto, dptbo);
-		dptbo.setDpt_id(dpt_id);
+	
 		//use dao
 		count=dptDao.insertDepartment(dptbo);
 		
@@ -42,7 +38,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	
 	
 	@Override
-	public List<DepartmentDto> featchAllDepartment(String hid) {
+	public List<DepartmentDto> featchAllDepartment(long hid) {
 		List<DepartmentDto>listdto=new ArrayList<>();
 		List<DepartmentBo>listbo=null;
 		
@@ -63,7 +59,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	
 	
 	@Override
-	public String removeDept(String dpt_id) {
+	public String removeDept(long dpt_id) {
 	      int count=0;
 	      
 	      //use dao

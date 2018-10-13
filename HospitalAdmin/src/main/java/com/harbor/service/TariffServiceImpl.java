@@ -23,14 +23,10 @@ public class TariffServiceImpl implements TariffService {
 	public String regTraiff(TariffDto tariffdto) {
 		TariffBo bo = null;
 		int count = 0;
-		String tariff_id = null;
-		tariff_id = String.valueOf(CustomIdGenerator.getID());
-		tariff_id = "TID-" + tariff_id;
-		tariffdto.setTariff_id(tariff_id);
 
 		// copy dto to bo
 		bo = new TariffBo();
-		bo.setHid(tariffdto.getHid());
+		
 		BeanUtils.copyProperties(tariffdto, bo);
 		// use dao
 		count = tardao.insertTraiffs(bo);
@@ -43,7 +39,7 @@ public class TariffServiceImpl implements TariffService {
 	
 	// Get All Tariffs
 	@Override
-	public List<TariffDto> featchAll(String hid) {
+	public List<TariffDto> featchAll(long hid) {
 		List<TariffDto>listdto=new ArrayList<>();
 		List<TariffBo>listbo=null;
 		
@@ -63,7 +59,7 @@ public class TariffServiceImpl implements TariffService {
 	
 	// delete tariffs
 	@Override
-	public String removeTariff(String tariff_id) {
+	public String removeTariff(long tariff_id) {
 		
 		int count=0;
 		
@@ -82,10 +78,7 @@ public class TariffServiceImpl implements TariffService {
 		
 		TariffBo bo = null;
 		int count = 0;
-		String rate_id = null;
-		rate_id = String.valueOf(CustomIdGenerator.getID());
-		rate_id = "RID-"+rate_id;
-		tdto.setRate_id(rate_id);
+		
 		
 		// copy DTO to BO
 		bo = new TariffBo();
@@ -106,7 +99,7 @@ public class TariffServiceImpl implements TariffService {
 	
 	// Get All Rates
 	@Override
-	public List<TariffDto> featchAllRates(String hid) {
+	public List<TariffDto> featchAllRates(long hid) {
 		List<TariffDto>ratelistdto=new ArrayList<>();
 		List<TariffBo>ratelistbo=null;
 		
@@ -127,7 +120,7 @@ public class TariffServiceImpl implements TariffService {
 	
 	// Delete Rate
 	@Override
-	public String removeRate(String rate_id) {
+	public String removeRate(long rate_id) {
 		int count=0;		
 		//use dao
 		count=tardao.deleteRate(rate_id);

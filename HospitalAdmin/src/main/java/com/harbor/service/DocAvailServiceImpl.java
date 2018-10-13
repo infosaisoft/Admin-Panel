@@ -19,7 +19,7 @@ public class DocAvailServiceImpl implements DocAvailService {
 	
 
 	@Override
-	public List<UserDto> featchRole(String hid) {
+	public List<UserDto> featchRole(long hid) {
 	
 		List<UserDto>listdto=new ArrayList<>();
 		List<UserBo>listbo=null;
@@ -29,8 +29,8 @@ public class DocAvailServiceImpl implements DocAvailService {
 		
 		listbo.forEach(bo->{
 			UserDto dto=new UserDto();
-			BeanUtils.copyProperties(bo, dto);
-			System.out.println("doc service:::"+dto.getFname());
+			BeanUtils.copyProperties(bo,dto);
+
 			listdto.add(dto);
 		});
 		return listdto;

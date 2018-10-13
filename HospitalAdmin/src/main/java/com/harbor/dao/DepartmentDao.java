@@ -10,6 +10,6 @@ public interface DepartmentDao {
 	
 	//public List<DepartmentBo> getAllDepartment();
 	
-	public int deleteDapartment(String dpt_id);
-	public List<DepartmentBo> getAllDepartment(String hid);
+	public int deleteDapartment(long dpt_id);
+	public List<DepartmentBo> getAllDepartment(long hid);
 }

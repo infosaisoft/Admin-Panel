@@ -10,29 +10,28 @@ public class UserDto {
 	private String password;
 	private String role;
 	private String nick_name;
-	private String gender;
+	private int gender;
 	private String address;
 	private String contact;
 	private String last_login;
 	private String photo;
 	private Date creation_date;
+	private long hid;
+	private long admin_id;
 
-	private String hid;
-	private String admin_id;
-
-	public String getAdmin_id() {
+	public long getAdmin_id() {
 		return admin_id;
 	}
 
-	public void setAdmin_id(String admin_id) {
+	public void setAdmin_id(long admin_id) {
 		this.admin_id = admin_id;
 	}
 
-	public String getHid() {
+	public long getHid() {
 		return hid;
 	}
 
-	public void setHid(String hid) {
+	public void setHid(long hid) {
 		this.hid = hid;
 	}
 
@@ -84,11 +83,11 @@ public class UserDto {
 		this.nick_name = nick_name;
 	}
 
-	public String getGender() {
+	public int getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(int gender) {
 		this.gender = gender;
 	}
 

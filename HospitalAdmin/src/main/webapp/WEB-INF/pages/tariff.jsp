@@ -18,13 +18,15 @@
 			<div class="row">
 				<div class="col-4">
 					<h3 class="sub_head">Create Tariff</h3>
-					
-					<form:form method="POST" action="tariff?action=1" modelAttribute="trafficCmd">
+
+					<form:form method="POST" action="tariff?action=1"
+						modelAttribute="trafficCmd">
 						<table class="table table-bordered table-custom table-shift">
 							<thead class="thead-light">
 								<tr>
 									<th><form:input class="form-control" type="text"
-											placeholder="Enter Tariff Name" path="tariff_name" required="true"/></th>
+											placeholder="Enter Tariff Name" path="tariff_name"
+											required="true" /></th>
 									<th><button class="btn btn-primary btn-sm" type="submit">Add</button></th>
 								</tr>
 							</thead>
@@ -36,9 +38,9 @@
 											<td><a class="btn btn-danger btn-sm"
 												onclick="return confirm('Are you sure, you want to delete?');"
 												data-toggle="tooltip" data-placement="top"
-												href="delete_tariff?tariff_id=${dto.tariff_id}">
-													<i class="far fa-trash-alt"></i>
-												</a></td>
+												href="delete_tariff?tariff_id=${dto.tariff_id}"> <i
+													class="far fa-trash-alt"></i>
+											</a></td>
 										</tr>
 									</c:forEach>
 								</c:when>
@@ -52,59 +54,61 @@
 							</c:choose>
 						</table>
 					</form:form>
-${ insert }
+					${ insert }
 
 				</div>
 
 				<div class="col-12">
 					<div class="row">
-						<div class="col-4"><h3 class="sub_head" style="margin-bottom:0px; margin-top:5px;">Add Tariff</h3></div>
+						<div class="col-4">
+							<h3 class="sub_head" style="margin-bottom: 0px; margin-top: 5px;">Add
+								Tariff</h3>
+						</div>
 						<div class="col-8 text-right">
-							<button class="btn btn-info btn-sm" style="margin-bottom:10px; margin-right:5px;">Download Excel for Bulk Upload</button>
-							<button class="btn btn-success btn-sm" style="margin-bottom:10px;">Upload</button>
+							<button class="btn btn-info btn-sm"
+								style="margin-bottom: 10px; margin-right: 5px;">Download
+								Excel for Bulk Upload</button>
+							<button class="btn btn-success btn-sm"
+								style="margin-bottom: 10px;">Upload</button>
 						</div>
 					</div>
-					
-					
-					<form:form method="POST" action="tariff?action=2" modelAttribute="trafficCmd">
+
+
+					<form:form method="POST" action="tariff?action=2"
+						modelAttribute="trafficCmd">
 						<table class="table table-bordered table-custom table-tariff">
 							<thead class="thead-light">
 								<tr>
-									<th>
-										<form:select class="form-control" path="tariff_name" style="min-width:110px" required="true">
-											<form:option value="">Select Tariff</form:option>									     
-									     	<form:options items="${tarifflist.getname}" />
-									    </form:select>
-									</th>
-									<th>
-										<form:input class="form-control" type="text" style="max-width:130px"
-											placeholder="Service Name" path="service_name" required="true"/>
-									</th>
-									<th>
-										<form:input class="form-control" type="text" 
-											placeholder="Service Category" path="service_category" required="true"/>
-									</th>
-									<th>
-										<form:input class="form-control" type="number" style="max-width:100px"
-											placeholder="Rate" path="rates" required="true"/>
-									</th>
-									<th>
-										<form:select class="form-control" path="doctor_name" required="true">
-											<form:option value="">Select Doctor</form:option>									     
-									      	<form:options items="${doclist.name}"/>
-									    </form:select>
-									</th>
-									<th>
-										<form:select class="form-control" path="department" required="true">	
-											<form:option value="">Select Department</form:option>								     
-									      	<form:options items="${dptlist.name}"/>
-									    </form:select>
-									</th>
+									<th><form:select class="form-control" path="tariff_name"
+											style="min-width:110px" required="true">
+											<form:option value="">Select Tariff</form:option>
+											<form:options value="${tarifflist.id }"
+												items="${tarifflist.getname}" />
+										</form:select></th>
+									<th><form:input class="form-control" type="text"
+											style="max-width:130px" placeholder="Service Name"
+											path="service_name" required="true" /></th>
+									<th><form:input class="form-control" type="text"
+											placeholder="Service Category" path="service_category"
+											required="true" /></th>
+									<th><form:input class="form-control" type="number"
+											style="max-width:100px" placeholder="Rate" path="rates"
+											required="true" /></th>
+									<th><form:select class="form-control" path="doctor_name"
+											required="true">
+											<form:option value="">Select Doctor</form:option>
+											<form:options value="${doclist.id}" items="${doclist.name}" />
+										</form:select></th>
+									<th><form:select class="form-control" path="department"
+											required="true">
+											<form:option value="">Select Department</form:option>
+											<form:options value="${dptlist.id}" items="${dptlist.name}" />
+										</form:select></th>
 									<th>
 										<div class="form-group form-check form-mand">
-										    <form:checkbox class="form-check-input" path="is_mandatory"/>
-										    <label class="form-check-label" >Is Mandatory</label>
-									 	</div>
+											<form:checkbox class="form-check-input" path="is_mandatory" />
+											<label class="form-check-label">Is Mandatory</label>
+										</div>
 									</th>
 									<th><button class="btn btn-primary btn-sm" type="submit">Add</button></th>
 								</tr>
@@ -123,9 +127,9 @@ ${ insert }
 											<td><a class="btn btn-danger btn-sm"
 												onclick="return confirm('Are you sure, you want to delete?');"
 												data-toggle="tooltip" data-placement="top"
-												href="delete_rate?rate_id=${dto.rate_id}">
-													<i class="far fa-trash-alt"></i>
-												</a></td>
+												href="delete_rate?rate_id=${dto.rate_id}"> <i
+													class="far fa-trash-alt"></i>
+											</a></td>
 										</tr>
 									</c:forEach>
 								</c:when>
@@ -139,7 +143,7 @@ ${ insert }
 							</c:choose>
 						</table>
 						${deleteRate }
-					</form:form>	
+					</form:form>
 				</div>
 
 			</div>

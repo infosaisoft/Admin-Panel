@@ -44,34 +44,31 @@ public class UserController {
 	UserService userser;
 	HttpSession ses = null;
 
-	//get active url   
-			@ModelAttribute("activeurl")
-			public Map<String, Object> getActiveUrl(HttpServletRequest req) {
-				Map<String, Object> activeurl = new HashMap<String, Object>();
-				
-				String url="user";
-				
-				activeurl.put("url", url);
-				return activeurl;
-			}
-		
+	// get active url
+	@ModelAttribute("activeurl")
+	public Map<String, Object> getActiveUrl(HttpServletRequest req) {
+		Map<String, Object> activeurl = new HashMap<String, Object>();
+
+		String url = "user";
+
+		activeurl.put("url", url);
+		return activeurl;
+	}
+
 	@RequestMapping(value = "/manage-user", method = RequestMethod.GET)
 	public String manageUser(HttpServletRequest req, Map<String, Object> map,
 			@ModelAttribute("insert_user") UserCommand insert_user) {
 
 		ses = req.getSession();
-		String uid = (String) ses.getAttribute("uid");
-		if (uid == null) {
+		long uid = (long) ses.getAttribute("uid");
+		if (uid == 0) {
 			return "redirect:/login";
 		}
-		String hid = (String) ses.getAttribute("hid");
+		long hid = (long) ses.getAttribute("hid");
 
 		List<UserDto> userdto = null;
 
 		userdto = userser.getUser(hid);
-
-		String current = System.getProperty("user.dir");
-		System.out.println(current);
 		map.put("userDto", userdto);
 		map.put("hid", hid);
 		return "manage-user";
@@ -97,7 +94,6 @@ public class UserController {
 	 * dto=userser.getUserByID(admin_id); role=dto.getRole(); rolelist1.put("role",
 	 * role); return rolelist1"; }
 	 */
-
 	@RequestMapping(value = "/manage-user", method = RequestMethod.POST)
 	public String insertUser(HttpServletRequest req, Map<String, Object> map,
 			@Valid @ModelAttribute("insert_user") UserCommand insert_user, BindingResult errors) {
@@ -105,11 +101,25 @@ public class UserController {
 		UserDto user = new UserDto();
 		ses = req.getSession();
 		ses.setAttribute("admin_id", user.getAdmin_id());
-		String hid = (String) ses.getAttribute("hid");
+		long hid = (long) ses.getAttribute("hid");
+
+		System.out.println("222222" + hid);
 		MultipartFile userPhoto = null;
 		InputStream is = null;
 		OutputStream os = null;
 		String filename = null;
+
+		if (insert_user.getGender().contains("male")) {
+			user.setGender(1);
+		}
+
+		else if (insert_user.getGender().contains("female")) {
+			user.setGender(2);
+		}
+
+		else {
+			user.setGender(0);
+		}
 
 		// Get Name of file
 		userPhoto = insert_user.getPhoto();
@@ -124,32 +134,27 @@ public class UserController {
 			fileName3 = req.getSession().getServletContext().getRealPath("/");
 			System.out.println("" + fileName3);
 			String imgPath = "/assests/images/hospital/";
-			// File file=new
-			// File("D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital\\");
-			File file = new File(
-					"D:\\projects\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
 
-			System.out.println(file.getAbsolutePath());
-			os = new FileOutputStream(file + "\\" + filename2);
+			File imageFile = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), filename2);
+			os = new FileOutputStream(imageFile);
 
 			is = userPhoto.getInputStream();
 
 			// perform file copy operation
 			IOUtils.copy(is, os);
 
-		} 
-		
-		
+		}
+
 		catch (IOException e) {
-			
+
 			e.printStackTrace();
-		} 
-		
+		}
+
 		catch (Exception e) {
-			
+
 			e.printStackTrace();
-		} 
-		
+		}
+
 		finally {
 			// close streams
 			try {
@@ -157,21 +162,20 @@ public class UserController {
 					os.close();
 				}
 			} catch (IOException e2) {
-				
+
 				e2.printStackTrace();
 			}
-			
+
 			try {
-				
+
 				if (is != null) {
 					is.close();
 				}
-				
-			} 
-			catch (IOException e2) {
+
+			} catch (IOException e2) {
 				e2.printStackTrace();
 			}
-			
+
 		}
 		user.setHid(hid);
 		// copy cmd to dto
@@ -182,7 +186,7 @@ public class UserController {
 		// use Service
 		String userResult = userser.insertUser(user);
 		System.out.println(userResult);
-		String admin_id = (String) ses.getAttribute("admin_id");
+		long admin_id = (long) ses.getAttribute("admin_id");
 		System.out.println(admin_id);
 		map.put("hid", hid);
 		map.put("userResult", userResult);
@@ -196,11 +200,11 @@ public class UserController {
 	public String deleteAdminId(HttpServletRequest req, Map<String, Object> map,
 			@ModelAttribute("insert_user") UserCommand insert_user) {
 
-		String admin_id = req.getParameter("admin_id");
+		long admin_id = Long.parseLong(req.getParameter("admin_id"));
 		System.out.println("delete controller" + admin_id);
 		ses = req.getSession();
 
-		String hid = (String) ses.getAttribute("hid");
+		long hid = (long) ses.getAttribute("hid");
 		String delete = null;
 		delete = userser.removeUser(admin_id);
 		List<UserDto> userdto = null;
@@ -215,11 +219,11 @@ public class UserController {
 	@RequestMapping(value = "edit_admin", method = RequestMethod.GET)
 	public String editUser(Map<String, Object> map, @ModelAttribute("insert_user") UserCommand insert_user,
 			HttpServletRequest req) {
-		String admin_id;
+		long admin_id;
 		UserDto userdto = null;
 
 		System.out.println("edit controller");
-		admin_id = req.getParameter("admin_id");
+		admin_id = Long.parseLong(req.getParameter("admin_id"));
 
 		// use service
 		userdto = userser.getUserByID(admin_id);
@@ -235,12 +239,23 @@ public class UserController {
 			HttpServletRequest req) {
 		String modify = null;
 		UserDto dto = null;
-		
-		
+
 		MultipartFile userPhoto = null;
 		InputStream is = null;
 		OutputStream os = null;
 		String filename = null;
+
+		if (insert_user.getGender().contains("male")) {
+			dto.setGender(1);
+		}
+
+		else if (insert_user.getGender().contains("female")) {
+			dto.setGender(2);
+		}
+
+		else {
+			dto.setGender(0);
+		}
 
 		// Get Name of file
 		userPhoto = insert_user.getPhoto();
@@ -254,31 +269,27 @@ public class UserController {
 			String fileName3 = null;
 			fileName3 = req.getSession().getServletContext().getRealPath("/");
 			System.out.println("" + fileName3);
-			// File file=new
-			// File("D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital\\");
-			File file = new File(
-					"D:\\projects\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
-			System.out.println(file.getAbsolutePath());
-			os = new FileOutputStream(file + "\\" + filename2);
+
+			File imageFile = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), filename2);
+			os = new FileOutputStream(imageFile);
 
 			is = userPhoto.getInputStream();
 
 			// perform file copy operation
 			IOUtils.copy(is, os);
 
-		} 
-		
-		
+		}
+
 		catch (IOException e) {
-			
+
 			e.printStackTrace();
-		} 
-		
+		}
+
 		catch (Exception e) {
-			
+
 			e.printStackTrace();
-		} 
-		
+		}
+
 		finally {
 			// close streams
 			try {
@@ -286,21 +297,20 @@ public class UserController {
 					os.close();
 				}
 			} catch (IOException e2) {
-				
+
 				e2.printStackTrace();
 			}
-			
+
 			try {
-				
+
 				if (is != null) {
 					is.close();
 				}
-				
-			} 
-			catch (IOException e2) {
+
+			} catch (IOException e2) {
 				e2.printStackTrace();
 			}
-			
+
 		}
 
 		// copy cmd to dto

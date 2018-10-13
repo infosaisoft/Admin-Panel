@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	UserDao userdao;
 
 	@Override
-	public List<UserDto> getUser(String hid) {
+	public List<UserDto> getUser(long hid) {
 
 		List<UserBo> listuserbo = null;
 		List<UserDto> listuserdto = new ArrayList<>();
@@ -43,8 +43,6 @@ public class UserServiceImpl implements UserService {
 		String uid = null;
 		CustomIdGenerator cg = null;
 		String password = null;
-		uid = String.valueOf(CustomIdGenerator.getID());
-		uid = "AID-" + uid;
 
 		cg = new CustomIdGenerator();
 		password = cg.generateHash(userdto.getPassword());
@@ -53,7 +51,6 @@ public class UserServiceImpl implements UserService {
 
 		UserBo userbo = new UserBo();
 		BeanUtils.copyProperties(userdto, userbo);
-		userbo.setAdmin_id(uid);
 		userbo.setPassword(password);
 
 		// use DAO
@@ -66,7 +63,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String removeUser(String admin_id) {
+	public String removeUser(long admin_id) {
 		int count = 0;
 
 		// use dao
@@ -116,7 +113,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDto getUserByID(String admin_id) {
+	public UserDto getUserByID(long admin_id) {
 		UserDto userdto = null;
 		UserBo userbo = null;
 

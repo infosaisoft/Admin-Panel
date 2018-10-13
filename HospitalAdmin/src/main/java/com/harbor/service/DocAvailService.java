@@ -6,5 +6,5 @@ import com.harbor.dto.UserDto;
 
 public interface DocAvailService {
 
-	public List<UserDto> featchRole(String hid);
+	public List<UserDto> featchRole(long hid);
 }

@@ -86,7 +86,7 @@
 							<div class="form-group">
 								<label>Logo</label>
 								<div>
-									<img src="assets/images/hospital/${userdto.photo}" height="100"
+									<img src="assets/images/hospital/${HospitalCmd.logo}" height="100"
 										width="100"> <input class="mt-2" type="file"
 										name="logo_photo" value="logo_photo" class="form-control-file">
 								</div>

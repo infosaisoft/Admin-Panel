@@ -19,17 +19,13 @@ public class SettingServiceImpl implements SettingService {
 	public String insertSetting(SettingsDto setdto) {
 		
 		SettingsBo setbo = null;
-		Long setid;
 		int count = 0;
 		
 		// copy dto to bo
 		setbo = new SettingsBo();
-		setid = CustomIdGenerator.getID();
-		String set_id = String.valueOf(setid);
-		set_id = "SET-"+set_id;
+	
 		
 		BeanUtils.copyProperties(setdto, setbo);
-		setbo.setSettings_id(set_id);
 		
 		// Use DAO
 		count = sdao.insertSettings(setbo);
@@ -42,13 +38,19 @@ public class SettingServiceImpl implements SettingService {
 	}
 
 	@Override
-	public SettingsDto fetchSet(String hid) {
+	public SettingsDto fetchSet(long hid) {
 		
 		SettingsDto setdto = null;
 		SettingsBo setbo = null;
 		
 		//use DAo
 		setbo = sdao.fetchSettings(hid);
+		
+		   if(setbo==null) {
+			   setbo=new SettingsBo();
+			  setbo.setMax_patient("0");
+			  setbo.setSlot_duration("0");
+		   }
 		
 		// copy bo to dto
 		setdto = new SettingsDto();

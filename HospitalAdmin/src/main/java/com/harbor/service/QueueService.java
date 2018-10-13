@@ -8,8 +8,8 @@ public interface QueueService {
 	
 	public String registrationQueue(QueueDto queuedto);
 	
-	public List<QueueDto> featchAllQueue(String hid);
+	public List<QueueDto> featchAllQueue(long hid);
 	
-	public String deleteQueue(String queue_id);
+	public String deleteQueue(long queue_id);
 
 }

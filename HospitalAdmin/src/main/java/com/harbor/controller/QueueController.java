@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -52,9 +52,9 @@ public class QueueController {
 	public String showQueue(Map<String, Object> map, @ModelAttribute("queuecmd") QueueCommand queuecmd,
 			HttpServletRequest req) {
 		ses = req.getSession();
-		String hid = null;
+		long hid = 0;
 		List<QueueDto> listdto = null;
-		hid = (String) ses.getAttribute("hid");
+		hid = (long) ses.getAttribute("hid");
 
 		listdto = queueservice.featchAllQueue(hid);
 
@@ -69,8 +69,8 @@ public class QueueController {
 		String insertQueue = null;
 		ses = req.getSession();
 		QueueDto queuedto = null;
-		String hid = null;
-		hid = (String) ses.getAttribute("hid");
+		long hid = 0;
+		hid = (long) ses.getAttribute("hid");
 		List<QueueDto> listdto = null;
 
 		// copy cmd to dto
@@ -107,11 +107,11 @@ public class QueueController {
 		String deleteQueue = null;
 		ses = req.getSession();
 		QueueDto queuedto = null;
-		String hid = null;
-		String queue_id=null;
-		hid = (String) ses.getAttribute("hid");
+		long hid = 0;
+		long queue_id=0;
+		hid = (long) ses.getAttribute("hid");
 		List<QueueDto> listdto = null;
-		queue_id=req.getParameter("queue_id");
+		queue_id=Long.parseLong(req.getParameter("queue_id"));
 		// copy cmd to dto
 		queuedto = new QueueDto();
 		BeanUtils.copyProperties(queuecmd, queuedto);

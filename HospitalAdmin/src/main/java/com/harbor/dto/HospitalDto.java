@@ -3,8 +3,9 @@ package com.harbor.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+@SuppressWarnings("serial")
 public class HospitalDto  implements Serializable{
-	private String hid;
+	private long hid;
 	private String name;
 	private String address;
 	private String city;
@@ -18,10 +19,10 @@ public class HospitalDto  implements Serializable{
 	
 	
 	
-	public String getHid() {
+	public long getHid() {
 		return hid;
 	}
-	public void setHid(String hid) {
+	public void setHid(long hid) {
 		this.hid = hid;
 	}
 	public String getName() {

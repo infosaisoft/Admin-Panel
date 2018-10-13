@@ -27,7 +27,7 @@
 											class="form-control selectDoc" path="dpt_name"
 											required="true">
 											<form:option value="">Select department</form:option>
-											 <form:options items="${dptlist.name}" /> 
+											 <form:options value="${dptlist.id}"  items="${dptlist.name}" /> 
 
 										</form:select>
 									</th>
@@ -41,7 +41,7 @@
 											class="form-control selectDoc" path="doc_name"
 											required="true">
 											<form:option value="">Select Doctor</form:option>
-											<form:options items="${doclist.name}" />
+											<form:options  value="${doclist.id}" items="${doclist.name}" />
 
 										</form:select>
 									</th>

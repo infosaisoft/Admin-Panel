@@ -13,17 +13,17 @@ import com.harbor.bo.HospitalBo;
 @Repository
 public class HospitalDaoImpl implements HospitalDao {
 
-	private static final String GETHOSPITALINFO = "SELECT hid,name,address,city,state,pincode,contact,reg_number,logo,creation_date FROM hospitals WHERE HID=?";
+	private static final String GETHOSPITALINFO = "SELECT id,name,address,city,state,pincode,contact,reg_number,logo,created FROM hospitals WHERE id=?";
 
-	private static final String GET_HOSPITAL_BY_ID = "SELECT name,address,city,state,pincode,contact,reg_number,logo FROM hospitals WHERE HID=?";
+	private static final String GET_HOSPITAL_BY_ID = "SELECT id,name,address,city,state,pincode,contact,reg_number,logo FROM hospitals WHERE id=?";
 
-	private static final String UPDATE_HOSPITAL="UPDATE hospitals SET name=?,address=?,city=?,state=?,pincode=?,contact=?,reg_number=?,logo=? WHERE hid=?";
+	private static final String UPDATE_HOSPITAL="UPDATE hospitals SET name=?,address=?,city=?,state=?,pincode=?,contact=?,reg_number=?,logo=? WHERE id=?";
 	
 	@Autowired
 	JdbcTemplate jt;
 
 	@Override
-	public HospitalBo gethospital(String hid) {
+	public HospitalBo gethospital(long hid) {
 		HospitalBo hbo = null;
 		hbo = jt.queryForObject(GETHOSPITALINFO, new RowMapper<HospitalBo>() {
 
@@ -34,7 +34,7 @@ public class HospitalDaoImpl implements HospitalDao {
 
 				// get all record
 				bo = new HospitalBo();
-				bo.setHid(rs.getString(1));
+				bo.setHid(rs.getLong(1));
 				bo.setName(rs.getString(2));
 				bo.setAddress(rs.getString(3));
 				bo.setCity(rs.getString(4));
@@ -52,7 +52,7 @@ public class HospitalDaoImpl implements HospitalDao {
 	}
 
 	@Override
-	public HospitalBo getHosptialById(String hid) {
+	public HospitalBo getHosptialById(long hid) {
 		HospitalBo hbo = null;
 
 		hbo = jt.queryForObject(GET_HOSPITAL_BY_ID, new RowMapper<HospitalBo>() {
@@ -60,14 +60,15 @@ public class HospitalDaoImpl implements HospitalDao {
 			@Override
 			public HospitalBo mapRow(ResultSet rs, int index) throws SQLException {
 				HospitalBo bo = new HospitalBo();
-				bo.setName(rs.getString(1));
-				bo.setAddress(rs.getString(2));
-				bo.setCity(rs.getString(3));
-				bo.setState(rs.getString(4));
-				bo.setPincode(rs.getString(5));
-				bo.setContact(rs.getString(6));
-				bo.setReg_number(rs.getString(7));
-				bo.setLogo(rs.getString(8));
+				bo.setHid(rs.getLong(1));
+				bo.setName(rs.getString(2));
+				bo.setAddress(rs.getString(3));
+				bo.setCity(rs.getString(4));
+				bo.setState(rs.getString(5));
+				bo.setPincode(rs.getString(6));
+				bo.setContact(rs.getString(7));
+				bo.setReg_number(rs.getString(8));
+				bo.setLogo(rs.getString(9));
 				return bo;
 			}
 

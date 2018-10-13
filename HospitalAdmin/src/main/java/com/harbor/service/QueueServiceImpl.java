@@ -21,12 +21,9 @@ public class QueueServiceImpl implements QueueService {
 	@Override
 	public String registrationQueue(QueueDto queuedto) {
 		QueueBo queuebo = null;
-		String queue_id = null;
 		int count = 0;
 
-		queue_id = String.valueOf(CustomIdGenerator.getID());
-		queue_id = "QUE-" + queue_id;
-		queuedto.setQueue_id(queue_id);
+		
 		// copy dto to bo
 		queuebo = new QueueBo();
 		BeanUtils.copyProperties(queuedto, queuebo);
@@ -42,7 +39,7 @@ public class QueueServiceImpl implements QueueService {
 	}
 
 	@Override
-	public List<QueueDto> featchAllQueue(String hid) {
+	public List<QueueDto> featchAllQueue(long hid) {
 		List<QueueBo> listbo = null;
 		List<QueueDto> listdto = new ArrayList<>();
 
@@ -58,7 +55,7 @@ public class QueueServiceImpl implements QueueService {
 	}
 
 	@Override
-	public String deleteQueue(String queue_id) {
+	public String deleteQueue(long queue_id) {
 		int count=0;
 		
 		//use dao

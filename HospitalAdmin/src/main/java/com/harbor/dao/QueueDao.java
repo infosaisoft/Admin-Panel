@@ -8,8 +8,8 @@ public interface QueueDao {
 	
 	public int insertQueue(QueueBo queuebo);
 	
-	public List<QueueBo> getAllQueue(String hid);
-	public int deleteQueue(String queue_id);
+	public List<QueueBo> getAllQueue(long hid);
+	public int deleteQueue(long queue_id);
 	
 
 }

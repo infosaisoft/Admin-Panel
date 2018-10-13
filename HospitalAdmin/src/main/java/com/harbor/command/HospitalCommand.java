@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class HospitalCommand {
 	
-	private String hid;
+	private long hid;
 	private String name;
 	private String address;
 	private String city;
@@ -19,10 +19,10 @@ public class HospitalCommand {
 	private MultipartFile logo_photo;
 	
 	
-	public String getHid() {
+	public long getHid() {
 		return hid;
 	}
-	public void setHid(String hid) {
+	public void setHid(long hid) {
 		this.hid = hid;
 	}
 	public String getName() {

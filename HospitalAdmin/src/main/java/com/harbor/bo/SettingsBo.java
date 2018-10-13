@@ -3,7 +3,7 @@ package com.harbor.bo;
 public class SettingsBo {
 	
 	private String settings_id;
-	private String hid;
+	private long hid;
 	private String slot_duration;
 	private String max_patient;
 	
@@ -13,10 +13,10 @@ public class SettingsBo {
 	public void setSettings_id(String settings_id) {
 		this.settings_id = settings_id;
 	}
-	public String getHid() {
+	public long getHid() {
 		return hid;
 	}
-	public void setHid(String hid) {
+	public void setHid(long hid) {
 		this.hid = hid;
 	}
 	

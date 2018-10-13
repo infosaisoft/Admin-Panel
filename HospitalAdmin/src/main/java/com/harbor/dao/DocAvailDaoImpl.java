@@ -17,13 +17,13 @@ import com.harbor.bo.UserBo;
 @Repository
 public class DocAvailDaoImpl implements DocAvailDao {
 
-	public static final String GETDOCTOR = "SELECT  `fname`,`lname`  FROM hospital_admin WHERE role='doctor' AND hid=?";
+	public static final String GETDOCTOR = "SELECT doctors.id,doctors.name FROM hospitals,departments,doctor_departments,doctors WHERE hospitals.id=departments.hospital_id AND departments.id=doctor_departments.department_id AND doctor_departments.doctor_id=doctors.id AND hospitals.id=?";
 
 	@Autowired
 	JdbcTemplate jt;
 
 	@Override
-	public List<UserBo> getAllDoctor(String hid) {
+	public List<UserBo> getAllDoctor(long hid) {
 		List<UserBo> listbo = null;
 
 		listbo = jt.query(GETDOCTOR, new ResultSetExtractor<List<UserBo>>() {
@@ -37,8 +37,9 @@ public class DocAvailDaoImpl implements DocAvailDao {
 				while (rs.next()) {
 
 					bo = new UserBo();
-					bo.setFname(rs.getString(1));
-					bo.setLname(rs.getString(2));
+					bo.setAdmin_id(rs.getLong(1));
+					bo.setFname(rs.getString(2));
+					
 					listbo.add(bo);
 
 				}

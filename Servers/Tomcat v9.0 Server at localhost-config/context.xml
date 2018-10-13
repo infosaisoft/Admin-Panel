@@ -17,12 +17,12 @@
 --><!-- The contents of this file will be loaded for each web application --><Context>
 	
 	
-	<Resource name="harbordb" 
+	<Resource name="harbor_db" 
       global="harbordb" 
       auth="Container" 
       type="javax.sql.DataSource" 
       driverClassName="com.mysql.jdbc.Driver" 
-      url="jdbc:mysql://localhost:3306/harbordb" 
+      url="jdbc:mysql://localhost:3306/harbor_db" 
       username="root" 
       password="root" 
       

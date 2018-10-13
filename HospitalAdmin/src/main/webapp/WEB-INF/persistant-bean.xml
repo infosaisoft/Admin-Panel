@@ -7,7 +7,7 @@
 
 	<bean id="JNDI"
 		class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="java:/comp/env/harbordb"></property>
+		<property name="jndiName" value="java:/comp/env/harbor_db"></property>
 	</bean>
 
 	<!-- config jdbctemplate -->

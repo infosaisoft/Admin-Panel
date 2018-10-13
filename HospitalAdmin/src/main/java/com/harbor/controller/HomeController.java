@@ -65,11 +65,11 @@ public class HomeController {
 	public String homePage(Map<String, Object> map, @ModelAttribute("departmentcmd") Departmentcommand departmentcmd,
 			HttpServletRequest req, HttpServletResponse res) {
 		ses = req.getSession();
-		String uid = (String) ses.getAttribute("uid");
-		String hid = (String) ses.getAttribute("hid");
+		long uid = (long) ses.getAttribute("uid");
+		long hid = (long) ses.getAttribute("hid");
 		HospitalDto dto = null;
 		List<DepartmentDto> listdto = null;
-		if(uid==null) {
+		if(uid==0) {
 			return "redirect:/login";
 		}
 
@@ -95,8 +95,8 @@ public class HomeController {
 		List<DepartmentDto> listdto = null;
 		HospitalDto dto = null;
 		ses = req.getSession();
-		String uid = (String) ses.getAttribute("uid");
-		String hid = (String) ses.getAttribute("hid");
+		long uid = (long) ses.getAttribute("uid");
+		long hid = (long) ses.getAttribute("hid");
 
 		// copy cmd to dto
 		dptdto = new DepartmentDto();
@@ -122,12 +122,12 @@ public class HomeController {
 	@RequestMapping(value = "/delete_dpt", method = RequestMethod.GET)
 	public String deleteDepartment(Map<String, Object> map, @ModelAttribute("departmentcmd") Departmentcommand departmentcmd,
 			HttpServletRequest req) {
-		String dpt_id=req.getParameter("dpt_id");
+		long dpt_id=Long.parseLong(req.getParameter("dpt_id"));
 		String delete=null;
 		DepartmentDto dptdto = null;
 		List<DepartmentDto> listdto = null;
-		String uid = (String) ses.getAttribute("uid");
-		String hid = (String) ses.getAttribute("hid");
+		long uid = (long) ses.getAttribute("uid");
+		long hid = (long) ses.getAttribute("hid");
 
 		// copy cmd to dto
 		HospitalDto dto;
@@ -139,8 +139,6 @@ public class HomeController {
 		dto = hservice.featchHospitalInfo(hid);
 		delete=dptService.removeDept(dpt_id);
 	//	listdto = dptService.featchAllDepartment();
-	
-		System.out.println("delete");
 		map.put("uid", uid);
 		map.put("delete", delete);
 		return "redirect:/home";
@@ -152,13 +150,16 @@ public class HomeController {
 		Map<String, Object> dptlist = new HashMap<String, Object>();
 		List<String> name = new ArrayList<>();
 		List<String> location = new ArrayList<>();
+		
 		ses = req.getSession();
-		String hid = null;
+		long hid = 0;
+		long dptid=0;
 		String dptname = null, dptlocation = null;
 		List<DepartmentDto> listdto = new ArrayList<>();
-		hid = (String) ses.getAttribute("hid");
+		hid = (long) ses.getAttribute("hid");
 		listdto = dptService.featchAllDepartment(hid);
 		for (DepartmentDto dto : listdto) {
+			dptid=dto.getDpt_id();
 			dptname = dto.getDpt_name();
 			dptlocation = dto.getDpt_location();
 			name.add(dptname);
@@ -166,6 +167,7 @@ public class HomeController {
 		}
 		dptlist.put("name", name);
 		dptlist.put("location", location);
+		dptlist.put("id", dptid);
 		return dptlist;
 	}
 	
@@ -175,9 +177,9 @@ public class HomeController {
 	public String editHome(Map<String, Object> map, @ModelAttribute("HospitalCmd") HospitalCommand HospitalCmd,
 			HttpServletRequest req, HttpServletResponse res) {
 		HospitalDto hdto=null;
-		String hid=null;
+		long hid=0;
 		
-		hid=req.getParameter("hid");
+		hid=Long.parseLong(req.getParameter("hid"));
 		
 		//copy dto to cmd
 		hdto=new HospitalDto();
@@ -212,15 +214,9 @@ public class HomeController {
 
 		try {
 
-			String fileName3 = null;
-			fileName3 = req.getSession().getServletContext().getRealPath("/");
-			String imgPath = "/assests/images/hospital/";
-			// File file=new
-			// File("D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital\\");
-			File file = new File("D:\\projects\\Hospital-Admin\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\HospitalAdmin\\assets\\images\\hospital\\");
+			 File imageFile = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), filename2);
 
-			System.out.println(file.getAbsolutePath());
-			os = new FileOutputStream(file + "\\" + filename2);
+			os = new FileOutputStream(imageFile);
 
 			is = logo.getInputStream();
 
@@ -271,7 +267,6 @@ public class HomeController {
 		BeanUtils.copyProperties(HospitalCmd, hdto);
 		hdto.setLogo(filename2);
 		//use  servie
-		System.out.println("odify::::::::"+hdto.getAddress());
 		modify=hservice.modifyHospital(hdto);
 
 		

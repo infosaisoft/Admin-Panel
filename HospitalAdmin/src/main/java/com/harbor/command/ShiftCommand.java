@@ -1,6 +1,17 @@
 package com.harbor.command;
 
+import java.util.Date;
+
+import javax.validation.Constraint;
+
+import org.hibernate.validator.constraints.UniqueElements;
+
+import com.harbor.commons.UniqueCoupon;
+
 public class ShiftCommand {
+	
+	@UniqueCoupon(message="name must not be same")
+	@UniqueElements(message="name are unquie")
 	
 	private String shift_name;
 	private String start_time;
@@ -10,13 +21,12 @@ public class ShiftCommand {
 	private String max_patient;
 	
 	private String doc_name;
-	private String mon;
-	private String tue;
-	private String wed;
-	private String thu;
-	private String fri;
-	private String sat;
-	private String sun;
+	private long dpt_id;
+
+	private String dpt_name;
+	
+	
+	private Date date;
 	
 	public String getShift_name() {
 		return shift_name;
@@ -56,47 +66,26 @@ public class ShiftCommand {
 	public void setDoc_name(String doc_name) {
 		this.doc_name = doc_name;
 	}
-	public String getMon() {
-		return mon;
+	
+	
+	public Date getDate() {
+		return date;
 	}
-	public void setMon(String mon) {
-		this.mon = mon;
+	public void setDate(Date date) {
+		this.date = date;
 	}
-	public String getTue() {
-		return tue;
+	public long getDpt_id() {
+		return dpt_id;
 	}
-	public void setTue(String tue) {
-		this.tue = tue;
+	public void setDpt_id(long dpt_id) {
+		this.dpt_id = dpt_id;
 	}
-	public String getWed() {
-		return wed;
+	public String getDpt_name() {
+		return dpt_name;
 	}
-	public void setWed(String wed) {
-		this.wed = wed;
+	public void setDpt_name(String dpt_name) {
+		this.dpt_name = dpt_name;
 	}
-	public String getThu() {
-		return thu;
-	}
-	public void setThu(String thu) {
-		this.thu = thu;
-	}
-	public String getFri() {
-		return fri;
-	}
-	public void setFri(String fri) {
-		this.fri = fri;
-	}
-	public String getSat() {
-		return sat;
-	}
-	public void setSat(String sat) {
-		this.sat = sat;
-	}
-	public String getSun() {
-		return sun;
-	}
-	public void setSun(String sun) {
-		this.sun = sun;
-	}
+	
 	
 }

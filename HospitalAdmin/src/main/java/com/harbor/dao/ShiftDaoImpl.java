@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,19 +14,20 @@ import org.springframework.stereotype.Repository;
 
 import com.harbor.bo.DepartmentBo;
 import com.harbor.bo.ShiftBo;
+import com.harbor.common.SpringException;
 
 @Repository
 public class ShiftDaoImpl implements ShiftDao {
 	
-	private static final String INSERTSHIFT = "INSERT INTO shifts (shifts_id, hid, shift_name, start_time, end_time) values (?,?,?,?,?)";
-	private static final String GETSHIFTS = "SELECT shifts_id, shift_name, start_time, end_time FROM shifts WHERE hid=?";
-	private static final String DELETESHIFT = "DELETE  FROM `shifts` WHERE `shifts_id`=?";
+	private static final String INSERTSHIFT = "INSERT INTO shifts (id, hospital_id, name, start_time, end_time) values (?,?,?,?,?)";
+	private static final String GETSHIFTS = "SELECT id, name, start_time, end_time FROM shifts WHERE hospital_id=?";
+	private static final String DELETESHIFT = "DELETE  FROM `shifts` WHERE id=?";
 	
 	@Autowired
 	JdbcTemplate jt;
 	
 	@Override
-	public int insertShift(ShiftBo shiftbo) {
+	public int insertShift(ShiftBo shiftbo)throws SpringException,SQLException {
 		
 		int count = 0;
 		
@@ -35,7 +37,7 @@ public class ShiftDaoImpl implements ShiftDao {
 	}
 
 	@Override
-	public List<ShiftBo> getAllShifts(String hid) {
+	public List<ShiftBo> getAllShifts(long hid) {
 		List<ShiftBo> listshift = null;
 		System.out.println("dao== "+hid);
 		
@@ -49,12 +51,13 @@ public class ShiftDaoImpl implements ShiftDao {
 				ShiftBo sbo = null;
 				
 				while(rs.next()) {
+				
 					sbo = new ShiftBo();
-					sbo.setShift_id(rs.getString(1));
+					sbo.setShift_id(rs.getLong(1));
 					sbo.setShift_name(rs.getString(2));
-					sbo.setStart_time(rs.getString(3));
-					sbo.setEnd_time(rs.getString(4));
-					
+					sbo.setStart_time(rs.getTime(3));
+					sbo.setEnd_time(rs.getTime(4));
+					   
 					listshift.add(sbo);
 				}
 				

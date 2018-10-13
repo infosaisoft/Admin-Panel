@@ -1,17 +1,26 @@
 package com.harbor.bo;
 
+import java.util.Date;
+
 public class DoctorAvaliblityBo {
 
-	public String avail_id;
-	public String hid;
-	public String doc_name;
-	public String mon;
-	public String tue;
-	public String wed;
-	public String thu;
-	public String fri;
-	public String sat;
-	public String sun;
+	private String avail_id;
+	private long hid;
+	private String doc_name;
+	private String mon;
+	private String tue;
+	private String wed;
+	private String thu;
+	private String fri;
+	private String sat;
+	private String sun;
+	private int month;
+	private int week;
+	private String status;
+	private Date date;
+	private String shift_name;
+	
+	
 
 	public String getAvail_id() {
 		return avail_id;
@@ -21,11 +30,11 @@ public class DoctorAvaliblityBo {
 		this.avail_id = avail_id;
 	}
 
-	public String getHid() {
+	public long getHid() {
 		return hid;
 	}
 
-	public void setHid(String hid) {
+	public void setHid(long hid) {
 		this.hid = hid;
 	}
 
@@ -91,6 +100,47 @@ public class DoctorAvaliblityBo {
 
 	public void setSun(String sun) {
 		this.sun = sun;
+	}
+
+	
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getWeek() {
+		return week;
+	}
+
+	public void setWeek(int week) {
+		this.week = week;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getShift_name() {
+		return shift_name;
+	}
+
+	public void setShift_name(String shift_name) {
+		this.shift_name = shift_name;
 	}
 
 }

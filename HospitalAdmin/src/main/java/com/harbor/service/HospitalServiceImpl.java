@@ -21,7 +21,7 @@ public class HospitalServiceImpl implements HospitalService {
 	private static final String DOWNLOADFLODER = "D:\\Hospital-Admin\\Hospital-Admin\\HospitalAdmin\\src\\main\\webapp\\assets\\images\\hospital";
 
 	@Override
-	public HospitalDto featchHospitalInfo(String hid) {
+	public HospitalDto featchHospitalInfo(long hid) {
 		HospitalBo hbo = null;
 		HospitalDto hdto = null;
 		// use dao
@@ -58,7 +58,7 @@ public class HospitalServiceImpl implements HospitalService {
 	
 	
 	@Override
-	public HospitalDto featchRecordBYId(String hid) {
+	public HospitalDto featchRecordBYId(long hid) {
 		HospitalDto hdto=null;
 		HospitalBo hbo=new HospitalBo();
 		

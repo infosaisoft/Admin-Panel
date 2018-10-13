@@ -39,7 +39,7 @@ public class TariffController {
 	@Autowired
 	HomeController hc;
 	
-	String uid = null;
+	long uid = 0;
 
 	HttpSession ses = null;
 	
@@ -60,12 +60,12 @@ public class TariffController {
 	public String ShowTariff(Map<String, Object> map, @ModelAttribute("trafficCmd") TariffCommand trafficCmd,
 			HttpServletRequest reqbg) {
 		ses = reqbg.getSession();
-		uid = (String) ses.getAttribute("uid");
+		uid = (long) ses.getAttribute("uid");
 		List<TariffDto> listdto = null;
 		List<TariffDto> ratelistdto = null;
-		String hid = (String) ses.getAttribute("hid");
+		long hid = (long) ses.getAttribute("hid");
 
-		if (uid == null) {
+		if (uid == 0) {
 			return "redirect:/login";
 
 		}
@@ -81,13 +81,13 @@ public class TariffController {
 	@RequestMapping(value = "tariff", method = RequestMethod.POST)
 	public String RegistrationTariff(Map<String, Object> map, @ModelAttribute("trafficCmd") TariffCommand trafficCmd,
 			HttpServletRequest req) {
-			String hid = null;
+			long hid = 0;
 			TariffDto tardto = null;
 			String insert = null;
 			ses = req.getSession();
 			List<TariffDto> listdto = null;
 	
-			hid = (String) ses.getAttribute("hid");
+			hid = (long) ses.getAttribute("hid");
 			String action = req.getParameter("action");
 			
 			if (action.equals("1")) {
@@ -129,10 +129,10 @@ public class TariffController {
 		String delete = null;
 		TariffDto tardto = null;
 
-		uid = (String) ses.getAttribute("uid");
-		String tariff_id = req.getParameter("tariff_id");
+		uid = (long) ses.getAttribute("uid");
+		long tariff_id =Long.parseLong(req.getParameter("tariff_id"));
 		List<TariffDto> listdto = null;
-		String hid = (String) ses.getAttribute("hid");
+		long hid = (long) ses.getAttribute("hid");
 	
 		
 		tardto = new TariffDto();
@@ -156,10 +156,10 @@ public class TariffController {
 		String deleteRate = null;
 		TariffDto tardto = null;
 
-		uid = (String) ses.getAttribute("uid");
-		String rate_id = req.getParameter("rate_id");
+		uid = (long) ses.getAttribute("uid");
+		long rate_id = Long.parseLong(req.getParameter("rate_id"));
 		List<TariffDto> listdto = null;
-		String hid = (String) ses.getAttribute("hid");
+		long hid = (long) ses.getAttribute("hid");
 	
 		tardto = new TariffDto();
 		BeanUtils.copyProperties(trafficCmd, tardto);
@@ -177,20 +177,25 @@ public class TariffController {
 	// tariff list
 	@ModelAttribute("tarifflist")
 	private Map<String, Object> getTariffs(HttpServletRequest req) {
-		String hid = null;
+		long hid = 0;
 		ses = req.getSession();
-		List<String>getname=new ArrayList<>();
+		List<Object>getname=new ArrayList<>();
+	
 		List<TariffDto> listdto = new ArrayList<>();
-		hid = (String) ses.getAttribute("hid");
+		hid = (long) ses.getAttribute("hid");
+		long id=0;
 		
 		Map<String, Object> tarifflist = new HashMap<String, Object>();
 		// use service
 		listdto = tarService.featchAll(hid);
 		
 		for (TariffDto tdto : listdto) {
+		   id=tdto.getTariff_id();
 			getname.add(tdto.getTariff_name().toString());
-		}
+			 
+		}             
 		tarifflist.put("getname", getname);
+		tarifflist.put("id", id);
 		
 		return tarifflist;
 

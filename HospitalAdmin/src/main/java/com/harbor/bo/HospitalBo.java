@@ -5,7 +5,7 @@ import java.util.Date;
 public class HospitalBo {
 	
 	
-	private String hid;
+	private long hid;
 	private String name;
 	private String address;
 	private String city;
@@ -18,10 +18,10 @@ public class HospitalBo {
 	
 	
 	
-	public String getHid() {
+	public long getHid() {
 		return hid;
 	}
-	public void setHid(String hid) {
+	public void setHid(long hid) {
 		this.hid = hid;
 	}
 	public String getName() {

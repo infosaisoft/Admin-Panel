@@ -10,9 +10,9 @@ public interface DepartmentService {
 	
 	//public List<DepartmentDto> featchAllDepartment();
 	
-	public String removeDept(String dpt_id);
+	public String removeDept(long dpt_id);
 
-	public List<DepartmentDto> featchAllDepartment(String hid);
+	public List<DepartmentDto> featchAllDepartment(long hid);
 
 
 }
