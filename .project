@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>HospitalAdmin</name>
 	<comment></comment>
 	<projects>
@@ -44,5 +45,14 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
+=======
+	<name>Admin-Panel</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+>>>>>>> branch 'master' of https://github.com/infosaisoft/Admin-Panel.git
 	</natures>
 </projectDescription>
