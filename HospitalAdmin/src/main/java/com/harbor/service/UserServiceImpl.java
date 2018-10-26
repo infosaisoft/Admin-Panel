@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.harbor.bo.UserBo;
@@ -17,6 +18,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserDao userdao;
+	
+	/*@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;*/
 
 	@Override
 	public List<UserDto> getUser(long hid) {
@@ -40,16 +44,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String insertUser(UserDto userdto) {
 		int count = 0;
-		String uid = null;
-		CustomIdGenerator cg = null;
 		String password = null;
-
-		cg = new CustomIdGenerator();
-		password = cg.generateHash(userdto.getPassword());
+		UserBo userbo=null;
+		
+		 BCryptPasswordEncoder bCryptPasswordEncoder=null;
+		 
+		 bCryptPasswordEncoder=new BCryptPasswordEncoder();
+		userbo.setPassword(bCryptPasswordEncoder.encode(userbo.getPassword()));
 
 		// copy dto to bo
 
-		UserBo userbo = new UserBo();
+		userbo = new UserBo();
 		BeanUtils.copyProperties(userdto, userbo);
 		userbo.setPassword(password);
 

@@ -20,5 +20,8 @@ public interface UserDao {
 	public UserBo getUserboById(long admin_id);
 	
 	public int updateUserBoById(UserBo bo);
+	
+	
+	
 
 }
