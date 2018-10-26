@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Default Main Template -->
+	<definition name="baseTemplate"
+		template="/WEB-INF/pages/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/pages/header.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+
+	<definition name="home" extends="baseTemplate">
+		<put-attribute name="title" value="home" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/home.jsp" />
+	</definition>
+
+	<definition name="manage-user" extends="baseTemplate">
+		<put-attribute name="title" value="manage-user" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/manage-user.jsp" />
+	</definition>
+
+	<definition name="edit_user" extends="baseTemplate">
+		<put-attribute name="title" value="edit_admin" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/edit_user.jsp" />
+	</definition>
+
+	<definition name="appointment-setup" extends="baseTemplate">
+		<put-attribute name="title" value="appointment-setup" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/appointment-setup.jsp" />
+	</definition>
+
+	<definition name="queue-management" extends="baseTemplate">
+		<put-attribute name="title" value="queue-management" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/queue-management.jsp" />
+	</definition>
+
+	<definition name="tariff" extends="baseTemplate">
+		<put-attribute name="title" value="tariff" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/tariff.jsp" />
+	</definition>
+
+	<definition name="login-history" extends="baseTemplate">
+		<put-attribute name="title" value="login-history" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/login-history.jsp" />
+	</definition>
+
+	<definition name="edit-hospital" extends="baseTemplate">
+		<put-attribute name="title" value="tariff" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/edit-hospital.jsp" />
+	</definition>
+
+
+	<definition name="addhospital_diseases"
+		extends="baseTemplate">
+		<put-attribute name="title" value="addhospital_diseases" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/addhospital_diseases.jsp" />
+	</definition>
+
+
+
+	<definition name="edit_hospital_diseases"
+		extends="baseTemplate">
+		<put-attribute name="title"
+			value="edit_hospital_diseases" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/edit_hospital_diseases.jsp" />
+	</definition>
+
+
+	<definition name="addhospital_dos_donts"
+		extends="baseTemplate">
+		<put-attribute name="title"
+			value="addhospital_dos_donts" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/addhospital_dos_donts.jsp" />
+	</definition>
+
+
+
+	<definition name="edit_hospital_dos_donts"
+		extends="baseTemplate">
+		<put-attribute name="title"
+			value="edit_hospital_dos_donts" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/edit_hospital_dos_donts.jsp" />
+	</definition>
+
+
+
+	<definition name="list_all_Hospital_dos_donts"
+		extends="baseTemplate">
+		<put-attribute name="title"
+			value="list_all_Hospital_dos_donts" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/list_all_Hospital_dos_donts.jsp" />
+	</definition>
+
+
+
+
+
+</tiles-definitions>
+
