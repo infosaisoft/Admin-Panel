@@ -16,13 +16,10 @@ import com.harbor.dto.LoginDto;
 @Service
 public class LoginServiceImpl implements LoginService {
 	
-	@Qualifier(value="passwordEncoder")
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 
 	@Autowired
 	LoginDao logindao;
-	
-	@Autowired
 	
 
 	public String verifyUser(LoginDto logindto) {
@@ -37,7 +34,8 @@ public class LoginServiceImpl implements LoginService {
 		loginbo = new LoginBo();
 		
 		BeanUtils.copyProperties(logindto, loginbo);
-		loginbo.setPassword(bCryptPasswordEncoder.encode(logindto.getPassword()));    
+		BCryptPasswordEncoder encode=new BCryptPasswordEncoder();
+		loginbo.setPassword(encode.encode(loginbo.getPassword()));    
 		// Use DAO
 		count = logindao.loginUser(loginbo);
 		long admin_id = loginbo.getAdmin_id();

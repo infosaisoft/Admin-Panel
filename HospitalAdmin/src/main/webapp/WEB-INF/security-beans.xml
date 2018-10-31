@@ -32,7 +32,12 @@
 
     <security:authentication-manager>
 
-        <security:authentication-provider user-service-ref="userDetailsManager">
+        <security:authentication-provider >
+        <security:password-encoder  hash="bcrypt"/>
+        <security:jdbc-user-service data-source-ref="JNDI"
+         authorities-by-username-query="select username,role from users where username=?"
+         users-by-username-query="select username,password from users wher username=?"
+             />
 
             <security:password-encoder ref="passwordEncoder"/>
 
