@@ -10,9 +10,6 @@ import com.harbor.commons.UniqueCoupon;
 
 public class ShiftCommand {
 	
-	@UniqueCoupon(message="name must not be same")
-	@UniqueElements(message="name are unquie")
-	
 	private String shift_name;
 	private String start_time;
 	private String end_time;

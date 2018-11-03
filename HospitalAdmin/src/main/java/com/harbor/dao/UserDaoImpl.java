@@ -80,7 +80,7 @@ public class UserDaoImpl implements UserDao {
 	public int insertUser(UserBo userbo) {
 		int count = 0;
 		int uname = jt.queryForObject(CHACKUSER, Integer.class, userbo.getUsername());
-		//if (uname == 0) {
+		if (uname == 0) {
 		         System.out.println("userdao::"+userbo.getRole());
 		          if(userbo.getRole().contains("doctor")) {
 		        	  count=jt.update(INSERT_QUERY_DOCTOR, userbo.getAddress(),new Date(),userbo.getGender(),userbo.getFname(),userbo.getPhoto());
@@ -90,7 +90,7 @@ public class UserDaoImpl implements UserDao {
 					userbo.getGender(), userbo.getAddress(), userbo.getContact(),userbo.getPhoto(), new Date(), new Date(),userbo.getHid());
 		          }
 			      jt.update(INSERT_QUERY_USERS, userbo.getUsername(),userbo.getPassword(),userbo.getRole());
-		//}
+		}
 		return count;
 	}
 

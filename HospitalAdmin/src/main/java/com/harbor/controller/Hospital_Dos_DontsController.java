@@ -104,9 +104,9 @@ public class Hospital_Dos_DontsController {
 		
 			
 
-			File imageFile1 = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), fname3);
-			File imageFile2 = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), fname4);
-			File imageFile3 = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), fname5);
+			File imageFile1 = new File(req.getServletContext().getRealPath("/assets/uploads/dosanddonts/images/"), fname3);
+			File imageFile2 = new File(req.getServletContext().getRealPath("/assets/uploads/dosanddonts/videos/"), fname4);
+			File imageFile3 = new File(req.getServletContext().getRealPath("/assets/uploads/dosanddonts/documents/"), fname6);
 
 			// creating input stream representing upload file
 			is1 = image.getInputStream();
@@ -280,10 +280,10 @@ public class Hospital_Dos_DontsController {
 		
 			
 
-			File imageFile1 = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), fname3);
-			File imageFile2 = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), fname4);
-			File imageFile3 = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), fname5);
 
+			File imageFile1 = new File(req.getServletContext().getRealPath("/assets/uploads/dosanddonts/images/"), fname3);
+			File imageFile2 = new File(req.getServletContext().getRealPath("/assets/uploads/dosanddonts/videos/"), fname4);
+			File imageFile3 = new File(req.getServletContext().getRealPath("/assets/uploads/dosanddonts/documents/"), fname6);
 			// creating input stream representing upload file
 			is1 = image.getInputStream();
 			is2 = video.getInputStream();
@@ -359,10 +359,7 @@ public class Hospital_Dos_DontsController {
 
 		// copy cmd to dto
 		dto = new Hospital_Dos_DontsDto();
-		dto.setHid(hid);
-		dto.setImages(fname3);
-		dto.setVideos(fname4);
-		dto.setDocument(fname6);
+		
 		
 
 		
@@ -371,6 +368,10 @@ public class Hospital_Dos_DontsController {
 		List<Hospital_Dos_DontsDto> listdto = null;
 		// copuy cmd to dto
 		BeanUtils.copyProperties(edithospital_dos_donts, dto);
+		dto.setHid(hid);
+		dto.setImages(fname3);
+		dto.setVideos(fname4);
+		dto.setDocument(fname6);
 		// use service
 		updatemsg = service.modifyHospital_Dos_Donts(dto);
 		listdto = service.fetchall();

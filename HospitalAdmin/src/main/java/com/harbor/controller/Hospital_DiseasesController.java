@@ -103,18 +103,19 @@ public class Hospital_DiseasesController {
 
 		try {
 
-			File imageFile1 = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), fname3);
-			File imageFile2 = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), fname4);
-			File imageFile3 = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), fname5);
+
+			File imageFile1 = new File(req.getServletContext().getRealPath("/assets/uploads/disease/images/"), fname3);
+			File imageFile2 = new File(req.getServletContext().getRealPath("/assets/uploads/disease/videos/"), fname4);
+			File imageFile3 = new File(req.getServletContext().getRealPath("/assets/uploads/disease/documents/"), fname6);
 			// creating input stream representing upload file
 			is1 = image.getInputStream();
 			is2 = video.getInputStream();
 			is3 = document.getInputStream();
 
 			// create output stream pointing to dest file on server matchine file system
-			os1 = new FileOutputStream( "//images//" +imageFile1);
-			os2 = new FileOutputStream( "//videos//" +imageFile2);
-			os3 = new FileOutputStream("//documents//" +imageFile3);
+			os1 = new FileOutputStream( imageFile1);
+			os2 = new FileOutputStream( imageFile2);
+			os3 = new FileOutputStream(imageFile3);
 
 			// perform copy operation to completing download
 			IOUtils.copy(is1, os1);
@@ -181,11 +182,10 @@ public class Hospital_DiseasesController {
 		// copy cmd to dto
 		dto = new Hospital_Diseases_Dto();
 
-		dto.setImges(fname3);
-		dto.setVideos(fname4);
+	
 		BeanUtils.copyProperties(hospital_diseases, dto);
 		dto.setHid(hid);
-		dto.setImges(fname3);
+		dto.setImages(fname3);
 		dto.setVideos(fname4);
 		dto.setDocuments(fname6);
 
@@ -276,18 +276,18 @@ public class Hospital_DiseasesController {
 
 		try {
 
-			File imageFile1 = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), fname3);
-			File imageFile2 = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), fname4);
-			File imageFile3 = new File(req.getServletContext().getRealPath("/assets/images/hospital/"), fname5);
+			File imageFile1 = new File(req.getServletContext().getRealPath("/assets/uploads/disease/images/"), fname3);
+			File imageFile2 = new File(req.getServletContext().getRealPath("/assets/uploads/disease/videos/"), fname4);
+			File imageFile3 = new File(req.getServletContext().getRealPath("/assets/uploads/disease/documents/"), fname6);
 			// creating input stream representing upload file
 			is1 = image.getInputStream();
 			is2 = video.getInputStream();
 			is3 = document.getInputStream();
 
 			// create output stream pointing to dest file on server matchine file system
-			os1 = new FileOutputStream( "//images//" +imageFile1);
-			os2 = new FileOutputStream( "//videos//" +imageFile2);
-			os3 = new FileOutputStream("//documents//" +imageFile3);
+			os1 = new FileOutputStream( imageFile1);
+			os2 = new FileOutputStream( imageFile2);
+			os3 = new FileOutputStream(imageFile3);
 
 			// perform copy operation to completing download
 			IOUtils.copy(is1, os1);
@@ -354,10 +354,10 @@ public class Hospital_DiseasesController {
 		// copy cmd to dto
 		dto = new Hospital_Diseases_Dto();
 
-		dto.setImges(fname3);
+		dto.setImages(fname3);
 		dto.setVideos(fname4);
 		dto.setHid(hid);
-		dto.setImges(fname3);
+		dto.setImages(fname3);
 		dto.setVideos(fname4);
 		dto.setDocuments(fname6);
 		// copuy cmd to dto

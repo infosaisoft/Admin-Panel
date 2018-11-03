@@ -1,5 +1,7 @@
 package com.harbor.service;
 
+import java.util.Map;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,34 +22,46 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	LoginDao logindao;
-	
+	@Autowired
+	 BCryptPasswordEncoder encode;
 
 	public String verifyUser(LoginDto logindto) {
 
 		int count = 0;
 		LoginBo loginbo = null;
+		String userbo=null;
+		boolean flage=false;
 		
+		System.out.println("password::"+logindto.getPassword());
 		
-		
-  
 		// copy dto to bo
 		loginbo = new LoginBo();
 		
 		BeanUtils.copyProperties(logindto, loginbo);
-		BCryptPasswordEncoder encode=new BCryptPasswordEncoder();
-		loginbo.setPassword(encode.encode(loginbo.getPassword()));    
+		
+	   userbo=logindao.getUserDetalis(logindto.getUsername());
+		//BCryptPasswordEncoder encode=new BCryptPasswordEncoder()
+		     flage= encode.matches(loginbo.getPassword(),userbo);
+		     System.out.println("ssss"+flage);
+		      if(flage) {
+		    	  
+		    	  count = logindao.loginUser(loginbo);
+		  		long admin_id = loginbo.getAdmin_id();
+		  		
+		  		 
+		  		logindto.setAdmin_id(admin_id);
+		  		System.out.println(logindto.getAdmin_id());
+		  		logindto.setHid(loginbo.getHid());
+		  		return "success";
+		      }       
+					return "failed";
+				}
+		  		
+	
 		// Use DAO
-		count = logindao.loginUser(loginbo);
-		long admin_id = loginbo.getAdmin_id();
-		logindto.setAdmin_id(admin_id);
-		logindto.setHid(loginbo.getHid());
-		if (count == 0) {
-			return "failed";
-		} else {
-			return "success";
-		}
+		
 
-	}
+	
 
 	@Override
 	public String modifyLogoutTime(String session_id) {

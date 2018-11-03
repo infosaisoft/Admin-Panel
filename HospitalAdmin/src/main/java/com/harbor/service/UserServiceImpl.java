@@ -19,8 +19,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDao userdao;
 	
-	/*@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;*/
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 
 	@Override
 	public List<UserDto> getUser(long hid) {
@@ -47,16 +47,13 @@ public class UserServiceImpl implements UserService {
 		String password = null;
 		UserBo userbo=null;
 		
-		 BCryptPasswordEncoder bCryptPasswordEncoder=null;
-		 
-		 bCryptPasswordEncoder=new BCryptPasswordEncoder();
-		userbo.setPassword(bCryptPasswordEncoder.encode(userbo.getPassword()));
+		
 
 		// copy dto to bo
 
 		userbo = new UserBo();
 		BeanUtils.copyProperties(userdto, userbo);
-		userbo.setPassword(password);
+		userbo.setPassword(encoder.encode(userbo.getPassword()));
 
 		// use DAO
 

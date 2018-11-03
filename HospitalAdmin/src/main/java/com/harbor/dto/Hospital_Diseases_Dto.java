@@ -8,7 +8,7 @@ public class Hospital_Diseases_Dto {
 	private long hid;
 	private String name;
 	private String description;
-	private String imges;
+	private String images;
 	private String videos;
 	private String documents;
 	
@@ -26,8 +26,8 @@ public class Hospital_Diseases_Dto {
 	public String getDescription() {
 		return description;
 	}
-	public String getImges() {
-		return imges;
+	public String getImages() {
+		return images;
 	}
 	public String getVideos() {
 		return videos;
@@ -47,8 +47,8 @@ public class Hospital_Diseases_Dto {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public void setImges(String imges) {
-		this.imges = imges;
+	public void setImages(String images) {
+		this.images = images;
 	}
 	public void setVideos(String videos) {
 		this.videos = videos;

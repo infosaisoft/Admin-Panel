@@ -42,6 +42,11 @@ public class UserController {
 
 	@Autowired
 	UserService userser;
+	
+	@Autowired
+	HomeController hc;
+	
+	
 	HttpSession ses = null;
 
 	// get active url
@@ -323,5 +328,12 @@ public class UserController {
 		map.put("insert_user", insert_user);
 		return "redirect:/manage-user";
 	}
+	
+	// get department list from Home controller
+		@ModelAttribute("dptlist")
+		public Map<String, Object> getAllDpt(HttpServletRequest req) {
+			return hc.getDepartment(req);
+		}
+	
 
 }

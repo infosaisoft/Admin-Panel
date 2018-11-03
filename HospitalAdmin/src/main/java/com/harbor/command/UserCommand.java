@@ -33,8 +33,13 @@ public class UserCommand {
 	private String last_login;
 	private MultipartFile photo;
 	private Date creation_date;
-	
 	private String admin_id;
+	private long deparartment_id;
+	
+	private String dpt_name;
+	
+	
+	
 	
 	public String getFname() {
 		return fname;
@@ -120,6 +125,18 @@ public class UserCommand {
 	}
 	public void setAdmin_id(String admin_id) {
 		this.admin_id = admin_id;
+	}
+	public long getDeparartment_id() {
+		return deparartment_id;
+	}
+	public void setDeparartment_id(long deparartment_id) {
+		this.deparartment_id = deparartment_id;
+	}
+	public String getDpt_name() {
+		return dpt_name;
+	}
+	public void setDpt_name(String dpt_name) {
+		this.dpt_name = dpt_name;
 	}	
 	
 }

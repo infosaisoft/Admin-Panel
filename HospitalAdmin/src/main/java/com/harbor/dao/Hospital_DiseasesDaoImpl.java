@@ -17,13 +17,13 @@ import com.harbor.bo.Hospital_DiseasesBo;
 @Repository
 public class Hospital_DiseasesDaoImpl implements Hospital_DiseasesDao {
 
-	private static final String Insert_query = "insert into hospital_diseases (hospital_id,name,description,images,videos) values (?,?,?,?,?)";
+	private static final String Insert_query = "insert into hospital_diseases (hospital_id,name,description,images,videos,document) values (?,?,?,?,?,?)";
 
-	private static final String get_all = "select id, hospital_id,name,description,images,videos from hospital_diseases ";
+	private static final String get_all = "select id, hospital_id,name,description,images,videos,document from hospital_diseases ";
 
 	private static final String get_by_sno = "select * from hospital_diseases where id=?";
 
-	private static final String update_hospital_diseases = "update hospital_diseases set hospital_id=?,name = ?,description = ?,images = ?,videos = ? where id = ?";
+	private static final String update_hospital_diseases = "update hospital_diseases set hospital_id=?,name = ?,description = ?,images = ?,videos = ?,document=? where id = ?";
 
 	private static final String delete_query = "delete from hospital_diseases where hospital_id = ?";
 
@@ -34,7 +34,8 @@ public class Hospital_DiseasesDaoImpl implements Hospital_DiseasesDao {
 	public int insertHospital(Hospital_DiseasesBo bo) {
 
 		int count = 0;
-		count = jt.update(Insert_query, bo.getHid(),bo.getName(), bo.getDescription(), bo.getImges(),bo.getVideos());
+		System.out.println("dao images::"+bo.getImages());
+		count = jt.update(Insert_query, bo.getHid(),bo.getName(), bo.getDescription(), bo.getImages(),bo.getVideos(),bo.getDocuments());
 		return count;
 	}
 
@@ -54,8 +55,9 @@ public class Hospital_DiseasesDaoImpl implements Hospital_DiseasesDao {
 					bo.setHid(rs.getLong(2));
 					bo.setName(rs.getString(3));
 					bo.setDescription(rs.getString(4));
-					bo.setImges(rs.getString(5));
+					bo.setImages(rs.getString(5));
 					bo.setVideos(rs.getString(6));
+					bo.setDocuments(rs.getString(7));
 
 					listbo.add(bo);
 				}
@@ -84,7 +86,7 @@ public class Hospital_DiseasesDaoImpl implements Hospital_DiseasesDao {
 				bo.setHid(rs.getLong(2));
 				bo.setName(rs.getString(3));
 				bo.setDescription(rs.getString(4));
-				bo.setImges(rs.getString(5));
+				bo.setImages(rs.getString(5));
 				bo.setVideos(rs.getString(6));
 
 
@@ -106,8 +108,8 @@ public class Hospital_DiseasesDaoImpl implements Hospital_DiseasesDao {
 	@Override
 	public int UpdateHospital(Hospital_DiseasesBo bo) {
 		int count = 0;
-		count = jt.update(update_hospital_diseases, bo.getHid(),bo.getName(), bo.getImges(), bo.getDescription(),
-				bo.getVideos(),bo.getId());
+		count = jt.update(update_hospital_diseases, bo.getHid(),bo.getName(), bo.getImages(), bo.getDescription(),
+				bo.getVideos(),bo.getDocuments(),bo.getId());
 		return count;
 	}
 

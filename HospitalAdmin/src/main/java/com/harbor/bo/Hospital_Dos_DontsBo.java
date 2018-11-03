@@ -1,12 +1,6 @@
-/**
- * 
- */
+
 package com.harbor.bo;
 
-/**
- * @author Piyush
- *
- */
 public class Hospital_Dos_DontsBo {
 
 	private long id;

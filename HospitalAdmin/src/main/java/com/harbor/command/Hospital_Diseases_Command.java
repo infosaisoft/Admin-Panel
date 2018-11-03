@@ -13,7 +13,7 @@ public class Hospital_Diseases_Command {
 	private MultipartFile images;
 	private MultipartFile videos;
 	private MultipartFile documents;
-	
+	private String imges;
 	
 	
 	public long getId() {
@@ -57,6 +57,12 @@ public class Hospital_Diseases_Command {
 	}
 	public void setDocuments(MultipartFile documents) {
 		this.documents = documents;
+	}
+	public String getImges() {
+		return imges;
+	}
+	public void setImges(String imges) {
+		this.imges = imges;
 	}
 	
 

@@ -52,8 +52,6 @@ import com.harbor.service.ShiftService;
 @Controller
 @SessionAttributes({ "hid", "uid" })
 @Scope("session")
-
-
 public class AppointmentController {
 
 	@Autowired
@@ -65,9 +63,6 @@ public class AppointmentController {
 	@Autowired
 	DoctorAvalibityService avaliblitservice;
 	
-	@Autowired
-	UniqueCouponValidator unique;
-
 	@Autowired
 	HomeController hc;
 

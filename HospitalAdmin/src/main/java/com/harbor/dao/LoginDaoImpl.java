@@ -15,11 +15,11 @@ import com.harbor.common.CustomIdGenerator;
 @Repository
 public class LoginDaoImpl implements LoginDao {
 
-	private static final String LOGINUSER = "SELECT COUNT(*) FROM  USERS WHERE username=? AND password=?";
+	private static final String LOGINUSER = "SELECT COUNT(*) FROM  USERS WHERE username=?";
 
 	// private static final String UPDATELOGINTIME = "UPDATE hospital_admin SET
 	// last_login=? WHERE admin_id=?";
-	private static final String GET_USER = "SELECT id FROM  USERS WHERE username=? AND password=?";
+	private static final String GET_USER = "SELECT id FROM  USERS WHERE username=?";
 	private static final String GET_HOSPITAL = "SELECT hospital_id FROM hospital_staff  WHERE user_id=?";
 
 	// history table query
@@ -27,7 +27,7 @@ public class LoginDaoImpl implements LoginDao {
 
 	private static final String UPDATE_HISTORY = "UPDATE login_history SET logout_time=? WHERE session_id=?";
 
-	private static final String GET_USER_DETALIS = "SELECT USERNAME,PASSWORD FORM USERS WHERE USERNAME=?";
+	private static final String GET_USER_DETALIS = "SELECT PASSWORD FROM USERS WHERE USERNAME=?";
 
 	@Autowired
 	JdbcTemplate jt;
@@ -37,10 +37,11 @@ public class LoginDaoImpl implements LoginDao {
 		int h1 = 0;
 		CustomIdGenerator cg = null;
 		long user_id = 0, hospital_id = 0;
-		cg = new CustomIdGenerator();
-		count = jt.queryForObject(LOGINUSER, Integer.class, loginbo.getUsername(), loginbo.getPassword());
+		count = jt.queryForObject(LOGINUSER, Integer.class, loginbo.getUsername());
 		if (count == 1) {
-			user_id = jt.queryForObject(GET_USER, Long.class, loginbo.getUsername(), loginbo.getPassword());
+			user_id = jt.queryForObject(GET_USER, Long.class, loginbo.getUsername());
+			
+			System.out.println("userid::"+user_id);
 			hospital_id = jt.queryForObject(GET_HOSPITAL, Long.class, user_id);
 			/*
 			 * int up = jt.update(UPDATELOGINTIME, new Date(), adminid);
@@ -49,7 +50,7 @@ public class LoginDaoImpl implements LoginDao {
 			 * loginbo.getHid(), adminid, loginbo.getLogin_time(), null);
 			 * 
 			 */
-
+             
 			loginbo.setAdmin_id(user_id);
 			loginbo.setHid(hospital_id);
 
@@ -66,9 +67,9 @@ public class LoginDaoImpl implements LoginDao {
 		return 0;
 	}
 
-	public UserBo getUserDetalis(String username) {
-	 UserBo bo=null;
-	 bo=jt.queryForObject(GET_USER_DETALIS, UserBo.class, username);
+	public String getUserDetalis(String username) {
+	String bo=null;
+	 bo=jt.queryForObject(GET_USER_DETALIS,String.class, username);
 		return bo;
 	}
 

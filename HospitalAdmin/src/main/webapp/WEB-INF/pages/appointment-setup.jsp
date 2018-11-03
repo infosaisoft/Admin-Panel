@@ -162,7 +162,7 @@
 									
 									<th>
 										<p class="week-head">Select Date</p>
-										<form:input path="date"  class="form-control selectDoc" type="date"/>
+										<form:input path="date"  class="form-control selectDoc"/>
 										 <%-- <form:select
 											class="form-control selectDoc" path="date"
 											required="true">

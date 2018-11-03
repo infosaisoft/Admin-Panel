@@ -33,7 +33,6 @@
     <security:authentication-manager>
 
         <security:authentication-provider >
-        <security:password-encoder  hash="bcrypt"/>
         <security:jdbc-user-service data-source-ref="JNDI"
          authorities-by-username-query="select username,role from users where username=?"
          users-by-username-query="select username,password from users wher username=?"
@@ -44,16 +43,12 @@
         </security:authentication-provider>
 
     </security:authentication-manager>
-<!-- 
+
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 
         <constructor-arg name="strength" value="11"/>
 
     </bean>
 
-    <bean id="userDetailsManager" class="org.springframework.security.provisioning.JdbcUserDetailsManager">
-
-        <property name="dataSource" ref="JNDI"/>
-
-    </bean> -->
+  
 </beans>

@@ -50,38 +50,34 @@
 								<th>Last Login Time</th>
 								<th>Login History</th>
 								<th>Action</th>
-								
+
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="user" items="${userDto}">
 								<tr>
-							
-									<td><img src="assets/images/hospital/${user.photo }" height="50" width="50"></td>
-									<td>${user.fname} ${user.lname}</td>
+
+									<td><img src="assets/images/hospital/${user.photo }"
+										height="50" width="50"></td>
+									<td>${user.fname}${user.lname}</td>
 									<td>${user.nick_name}</td>
 									<td>${user.role}</td>
 									<td>${user.gender}</td>
 									<td>${user.address}</td>
 									<td>${user.contact}</td>
 									<td>${user.last_login}</td>
-									<td>
-										<a href="login-history?admin_id=${user.admin_id}" type="button" 
-										class="btn btn-info btn-sm">
-											View
-										</a>
-									</td>
-									<td>
-										<a href="edit_admin?admin_id=${user.admin_id}" type="button" class="btn btn-primary btn-sm CursorPointer"
-										 data-toggle="tooltip" data-placement="top" title="Edit User">
+									<td><a href="login-history?admin_id=${user.admin_id}"
+										type="button" class="btn btn-info btn-sm"> View </a></td>
+									<td><a href="edit_admin?admin_id=${user.admin_id}"
+										type="button" class="btn btn-primary btn-sm CursorPointer"
+										data-toggle="tooltip" data-placement="top" title="Edit User">
 											<i class="far fa-edit"></i>
-										</a>
-										<a href="delete_admin?admin_id=${user.admin_id}" 
-											onclick="return confirm('Are you sure, you want to delete?');"
-										class="btn btn-danger btn-sm CursorPointer" data-toggle="tooltip" data-placement="top" title="Delete User">
+									</a> <a href="delete_admin?admin_id=${user.admin_id}"
+										onclick="return confirm('Are you sure, you want to delete?');"
+										class="btn btn-danger btn-sm CursorPointer"
+										data-toggle="tooltip" data-placement="top" title="Delete User">
 											<i class="far fa-trash-alt"></i>
-										</a>
-									</td>
+									</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -100,135 +96,160 @@
 		</div>
 	</div>
 
- <p>${userResult}</p>
-<script>
-	$(function () {
-	  $('[data-toggle="tooltip"]').tooltip()
-	})
-</script>
+	<p>${userResult}</p>
+	<script>
+		$(function() {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
 
 	<!-- Add User Modal Start  -->
 	<div class="modal fade" id="AddUser" tabindex="-1" role="dialog"
 		aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content AddUserContent">
-				<form:form method="POST" modelAttribute="insert_user" enctype="multipart/form-data">
-				<div class="modal-header">
-					<h5 class="modal-title">Add User</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-				
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label>First Name</label> 
-								<form:input class="form-control" path="fname" placeholder="Enter First Name"/>
-								<form:errors path="fname" />
-							</div>
-						</div>
-						<div class="col">
-							<div class="form-group">
-								<label>Last Name</label> 
-								<form:input class="form-control" path="lname" placeholder="Enter Last Name"/>
-								<form:errors path="lname" />
-							</div>
-						</div>
+				<form:form method="POST" modelAttribute="insert_user"
+					enctype="multipart/form-data">
+					<div class="modal-header">
+						<h5 class="modal-title">Add User</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
-					
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label>Nick Name</label> 
-								<form:input class="form-control" path="nick_name" placeholder="Enter Username"/>
-							</div>
-						</div>
-						<div class="col">
-							<div class="form-group">
-							    <label>Assign Role</label>
-							    <form:select multiple="true" class="form-control" path="role">
-							      <%-- <form:option value="NONE">Assign Role</form:option> --%>
-							      <form:options items="${rolelist}"/>
-							    </form:select>
-						  	</div>
-						</div>
-												
-					</div>
-					
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label>Username</label> 
-								<form:input class="form-control" path="username" placeholder="Enter Username"/>
-								<form:errors path="username" />
-							</div>
-						</div>
-						<div class="col">
-							<div class="form-group">
-								<label>Password</label> 
-								<form:password class="form-control" path="password" placeholder="Enter Password"/>
-								<form:errors path="password" />
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">						
-						<div class="col-6">
-							<div class="form-group">
-								<label>Confirm Password</label> 
-								<form:password class="form-control" path="cpassword" placeholder="Confirm Password"/>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label>Address</label> 
-								<form:input class="form-control" path="address" placeholder="Enter Address"/>
-							</div>
-						</div>
-						<div class="col">
-							<div class="form-group">
-								<label>Mobile No.</label> 
-								<form:input class="form-control" path="contact" placeholder="Enter Mobile Number"/>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col">
-							<div class="form-group GenderBox">
-								<div><label>Gender</label></div>
-								<div class="form-check form-check-inline">
-									  <form:radiobutton class="form-check-input" path="gender" value="male"/>
-									  <label class="form-check-label" for="inlineRadio1">Male</label>
+					<div class="modal-body">
+
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label>First Name</label>
+									<form:input class="form-control" path="fname"
+										placeholder="Enter First Name" />
+									<form:errors path="fname" />
 								</div>
-								<div class="form-check form-check-inline">
-									  <form:radiobutton class="form-check-input" path="gender" value="female"/>
-									  <label class="form-check-label" for="inlineRadio2">Female</label>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label>Last Name</label>
+									<form:input class="form-control" path="lname"
+										placeholder="Enter Last Name" />
+									<form:errors path="lname" />
 								</div>
 							</div>
 						</div>
-						<div class="col">
-							<div class="form-group">
-							    <label>Photo</label>
-							    <input type="file" name="photo" class="form-control-file">
-						  	</div>
+
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label>Nick Name</label>
+									<form:input class="form-control" path="nick_name"
+										placeholder="Enter Username" />
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label>Assign Role</label>
+									<form:select  class="form-control" path="role">
+										<%-- <form:option value="NONE">Assign Role</form:option> --%>
+										<form:options items="${rolelist}" />
+									</form:select>
+								</div>
+							</div>
+
 						</div>
+
+						<div class="row">
+							<div class="col-6">
+								<p class="week-head">Select Department</p>
+								<form:select class="form-control selectDoc" path="dpt_name"
+									required="true">
+									<form:option value="">Select Department</form:option>
+									<form:options value="${dptlist.id}" items="${dptlist.name}" />
+
+								</form:select>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label>Username</label>
+									<form:input class="form-control" path="username"
+										placeholder="Enter Username" />
+									<form:errors path="username" />
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label>Password</label>
+									<form:password class="form-control" path="password"
+										placeholder="Enter Password" />
+									<form:errors path="password" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-6">
+								<div class="form-group">
+									<label>Confirm Password</label>
+									<form:password class="form-control" path="cpassword"
+										placeholder="Confirm Password" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label>Address</label>
+									<form:input class="form-control" path="address"
+										placeholder="Enter Address" />
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label>Mobile No.</label>
+									<form:input class="form-control" path="contact"
+										placeholder="Enter Mobile Number" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col">
+								<div class="form-group GenderBox">
+									<div>
+										<label>Gender</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<form:radiobutton class="form-check-input" path="gender"
+											value="male" />
+										<label class="form-check-label" for="inlineRadio1">Male</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<form:radiobutton class="form-check-input" path="gender"
+											value="female" />
+										<label class="form-check-label" for="inlineRadio2">Female</label>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label>Photo</label> <input type="file" name="photo"
+										class="form-control-file">
+								</div>
+							</div>
+						</div>
+
+						<p>${userResult }</p>
+
 					</div>
-					
-					<p>${userResult }</p>
-					
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary btn-md"
-						data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary btn-md">Submit</button>
-				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-md"
+							data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary btn-md">Submit</button>
+					</div>
 				</form:form>
 			</div>
 		</div>

@@ -22,7 +22,7 @@ public class QueueDaoImpl implements QueueDao {
 	private static final String DELETE_QUEUE="DELETE FROM queue_management WHERE id=?";
 	
 	private static final String GET_DEP_DOC_NAME="SELECT  queue_management.`id`, departments.`name`,doctors.`name`,queue_management.`room_name` FROM departments,doctors,queue_management WHERE queue_management.`doc_id`=doctors.`id` AND queue_management.`dpt_id`=departments.`id` AND queue_management.`hospital_id`=?";
-	
+		
 	@Autowired
 	JdbcTemplate jt;
 	@Override

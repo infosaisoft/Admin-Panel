@@ -26,6 +26,8 @@ public class Hospital_DiseasesServiceImpl implements Hospital_DiseasesService{
 		
 		bo = new Hospital_DiseasesBo();
 		// convert dto to bo
+		
+		System.out.println("image"+dto.getImages());
 		BeanUtils.copyProperties(dto, bo);
 
 		// use Dao
